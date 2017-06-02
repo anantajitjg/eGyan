@@ -1,0 +1,13 @@
+{
+  "name": "egyan",
+  "version": "1.0.0",
+  "description": "eGyan - Simple and effective elearning platform for everyone",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
