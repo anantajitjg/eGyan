@@ -120,6 +120,20 @@
     width: 1.8em;
     height: 1.8em;
 }
+.clear_fix{
+    clear:both;
+}
+.star_wrapper{
+    float:right;
+    margin-right: 10px;
+}
+.ui.star.rating .active.icon {
+    color: #E9AE6C !important;
+    text-shadow: 0 -1px 0 #DA8A31,-1px 0 0 #DA8A31,0 1px 0 #DA8A31,1px 0 0 #DA8A31 !important;
+}
+.flat.button{
+    border-radius: 0;
+}
 
 @media only screen and (max-width: 700px) {
     .ui.fixed.menu {
@@ -147,3 +161,141 @@
 
 
 /*-------------- End of Homepage Styles -------------*/
+/*-------------- Modal Styles -----------------------*/
+.ui.basic.modal {
+    background-color: #333;
+    border: 1px solid #009c95;
+}
+.ui.basic.modal .ui.segment {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    border: 0;
+}
+.ui.basic.modal .ui.stacked.segment::after, .ui.basic.modal .ui.stacked.segment::before {
+    border-top: 0;
+    background: none;
+}
+.ui.basic.modal input::-webkit-selection {
+	background-color:rgba(210, 210, 210, 0.9);
+}
+.ui.basic.modal input::-moz-selection {
+	background-color:rgba(210, 210, 210, 0.9);
+}
+.ui.basic.modal input::selection {
+	background-color:rgba(210, 210, 210, 0.9);
+}
+.ui.basic.modal .field > label, .ui.basic.modal .ui.input {
+    color:#fff;
+}
+.ui.basic.modal .field.error .input, .ui.basic.modal .fields.error .field .input{
+    color: #9F3A38;
+}
+.ui.basic.modal input:not([type]),
+.ui.basic.modal input[type="date"],
+.ui.basic.modal input[type="datetime-local"],
+.ui.basic.modal input[type="email"],
+.ui.basic.modal input[type="number"],
+.ui.basic.modal input[type="password"],
+.ui.basic.modal input[type="search"],
+.ui.basic.modal input[type="tel"],
+.ui.basic.modal input[type="time"],
+.ui.basic.modal input[type="text"],
+.ui.basic.modal input[type="file"],
+.ui.basic.modal input[type="url"] {
+  color:#fff;
+}
+/*-------------- Flat Form Styles -------------------*/
+.ui.form input:not([type]),
+.ui.form input[type="date"],
+.ui.form input[type="datetime-local"],
+.ui.form input[type="email"],
+.ui.form input[type="number"],
+.ui.form input[type="password"],
+.ui.form input[type="search"],
+.ui.form input[type="tel"],
+.ui.form input[type="time"],
+.ui.form input[type="text"],
+.ui.form input[type="file"],
+.ui.form input[type="url"] {
+  background: transparent;
+  border: none;
+  border-radius: 0em;
+  box-shadow: none;
+}
+.ui.form input:not([type]):focus,
+.ui.form input[type="date"]:focus,
+.ui.form input[type="datetime-local"]:focus,
+.ui.form input[type="email"]:focus,
+.ui.form input[type="number"]:focus,
+.ui.form input[type="password"]:focus,
+.ui.form input[type="search"]:focus,
+.ui.form input[type="tel"]:focus,
+.ui.form input[type="time"]:focus,
+.ui.form input[type="text"]:focus,
+.ui.form input[type="file"]:focus,
+.ui.form input[type="url"]:focus {
+  border-color: #009c95;
+  border-radius: 0em;
+  background: transparent;
+  box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
+}
+.ui.form input[type="text"],
+.ui.form input[type="email"],
+.ui.form input[type="date"],
+.ui.form input[type="password"],
+.ui.form input[type="number"],
+.ui.form input[type="url"],
+.ui.form input[type="tel"] {
+  border-bottom: 1px solid #DDDDDD;
+}
+.ui.form .field.error input:not([type]),.ui.form .field.error input[type=text],.ui.form .field.error input[type=email],.ui.form .field.error input[type=search],.ui.form .field.error input[type=password],.ui.form .field.error input[type=date],.ui.form .field.error input[type=datetime-local],.ui.form .field.error input[type=tel],.ui.form .field.error input[type=time],.ui.form .field.error input[type=file],.ui.form .field.error input[type=url],.ui.form .field.error input[type=number],.ui.form .field.error select,.ui.form .field.error textarea,.ui.form .fields.error .field input:not([type]),.ui.form .fields.error .field input[type=text],.ui.form .fields.error .field input[type=email],.ui.form .fields.error .field input[type=search],.ui.form .fields.error .field input[type=password],.ui.form .fields.error .field input[type=date],.ui.form .fields.error .field input[type=datetime-local],.ui.form .fields.error .field input[type=tel],.ui.form .fields.error .field input[type=time],.ui.form .fields.error .field input[type=file],.ui.form .fields.error .field input[type=url],.ui.form .fields.error .field input[type=number],.ui.form .fields.error .field select,.ui.form .fields.error .field textarea {
+    background: transparent;
+}
+.ui.form .field.error input:not([type]):focus,.ui.form .field.error input[type=text]:focus,.ui.form .field.error input[type=email]:focus,.ui.form .field.error input[type=search]:focus,.ui.form .field.error input[type=password]:focus,.ui.form .field.error input[type=date]:focus,.ui.form .field.error input[type=datetime-local]:focus,.ui.form .field.error input[type=tel]:focus,.ui.form .field.error input[type=time]:focus,.ui.form .field.error input[type=file]:focus,.ui.form .field.error input[type=url]:focus,.ui.form .field.error input[type=number]:focus,.ui.form .field.error select:focus,.ui.form .field.error textarea:focus {
+	background:transparent;
+}
+.ui.form .ui.icon.input > .icon {
+  width: 1em;
+}
+/*--------------------
+      Placeholder
+---------------------*/
+/* browsers require these rules separate */
+.ui.input input::-webkit-input-placeholder {
+	color: rgba(140, 140, 140, 0.87);
+}
+.ui.input input::-moz-placeholder {
+	color: rgba(140, 140, 140, 0.87);
+}
+.ui.input input:-ms-input-placeholder {
+	color: rgba(140, 140, 140, 0.87);
+}
+.ui.form ::-webkit-input-placeholder {
+  color: rgba(140, 140, 140, 0.87);
+}
+.ui.form :-ms-input-placeholder {
+  color: rgba(140, 140, 140, 0.87);
+}
+.ui.form ::-moz-placeholder {
+  color: rgba(140, 140, 140, 0.87);
+}
+.ui.form :focus::-webkit-input-placeholder {
+  color: rgba(89, 89, 89, 0.87);
+}
+.ui.form :focus:-ms-input-placeholder {
+  color: rgba(89, 89, 89, 0.87);
+}
+.ui.form :focus::-moz-placeholder {
+  color: rgba(89, 89, 89, 0.87);
+}
+/*--------- Loader Styles -------------*/
+.main_loader{
+    display: inline;
+    padding-left: 0.7em;
+    display: none;
+}
+.loader_text{
+    display: inline;
+    padding-left: 0.55em;
+}
