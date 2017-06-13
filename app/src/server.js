@@ -74,7 +74,7 @@ app.post("/signup", function (req, res) {
   }
 });
 
-app.get('getrole/:role', function (req, res) {
+app.get('/getrole/:role', function (req, res) {
   var roles = req.get('X-Hasura-Allowed-Roles');
 
   // Check if allowed roles contains the rolename mentioned in the URL
