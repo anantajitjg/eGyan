@@ -83,55 +83,31 @@
     display: none;
 }
 
-.main_hr{
+.main_hr {
     border: 0;
     border-top: 1px solid #a7a7a7;
 }
-.course_content{
-    width:90%;
+
+.course_content {
+    width: 90%;
     margin-top: 2em;
 }
-.ui.styled.accordion .title {
-    color: rgba(0,0,0,.7);
+
+.clear_fix {
+    clear: both;
 }
-#course_accordion {
-    border:0;
-}
-#course_accordion .item {
-    padding: 1em 0em;
-}
-#course_accordion .item .title {
-    padding: 0.9em;
-    background: #009c95;
-    color:#fff;
-}
-#course_accordion .item .title:hover, #course_accordion .item .title.active{
-    background: #21b1ab;
-    transition: background 0.5s ease;
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-}
-#course_accordion .item::before {
-    background: none;
-}
-#course_accordion .image{
-    border-radius:0;
-    width: 1.8em;
-    height: 1.8em;
-}
-.clear_fix{
-    clear:both;
-}
-.star_wrapper{
-    float:right;
+
+.star_wrapper {
+    float: right;
     margin-right: 10px;
 }
+
 .ui.star.rating .active.icon {
     color: #E9AE6C !important;
-    text-shadow: 0 -1px 0 #DA8A31,-1px 0 0 #DA8A31,0 1px 0 #DA8A31,1px 0 0 #DA8A31 !important;
+    text-shadow: 0 -1px 0 #DA8A31, -1px 0 0 #DA8A31, 0 1px 0 #DA8A31, 1px 0 0 #DA8A31 !important;
 }
-.flat.button{
+
+.flat.button {
     border-radius: 0;
 }
 
@@ -161,36 +137,50 @@
 
 
 /*-------------- End of Homepage Styles -------------*/
+
+
 /*-------------- Modal Styles -----------------------*/
+
 .ui.basic.modal {
     background-color: #333;
     border: 1px solid #009c95;
 }
+
 .ui.basic.modal .ui.segment {
     background: none;
     box-shadow: none;
     border-radius: 0;
     border: 0;
 }
-.ui.basic.modal .ui.stacked.segment::after, .ui.basic.modal .ui.stacked.segment::before {
+
+.ui.basic.modal .ui.stacked.segment::after,
+.ui.basic.modal .ui.stacked.segment::before {
     border-top: 0;
     background: none;
 }
+
 .ui.basic.modal input::-webkit-selection {
-	background-color:rgba(210, 210, 210, 0.9);
+    background-color: rgba(210, 210, 210, 0.9);
 }
+
 .ui.basic.modal input::-moz-selection {
-	background-color:rgba(210, 210, 210, 0.9);
+    background-color: rgba(210, 210, 210, 0.9);
 }
+
 .ui.basic.modal input::selection {
-	background-color:rgba(210, 210, 210, 0.9);
+    background-color: rgba(210, 210, 210, 0.9);
 }
-.ui.basic.modal .field > label, .ui.basic.modal .ui.input {
-    color:#fff;
+
+.ui.basic.modal .field>label,
+.ui.basic.modal .ui.input {
+    color: #fff;
 }
-.ui.basic.modal .field.error .input, .ui.basic.modal .fields.error .field .input{
+
+.ui.basic.modal .field.error .input,
+.ui.basic.modal .fields.error .field .input {
     color: #9F3A38;
 }
+
 .ui.basic.modal input:not([type]),
 .ui.basic.modal input[type="date"],
 .ui.basic.modal input[type="datetime-local"],
@@ -203,9 +193,12 @@
 .ui.basic.modal input[type="text"],
 .ui.basic.modal input[type="file"],
 .ui.basic.modal input[type="url"] {
-  color:#fff;
+    color: #fff;
 }
+
+
 /*-------------- Flat Form Styles -------------------*/
+
 .ui.form input:not([type]),
 .ui.form input[type="date"],
 .ui.form input[type="datetime-local"],
@@ -218,11 +211,12 @@
 .ui.form input[type="text"],
 .ui.form input[type="file"],
 .ui.form input[type="url"] {
-  background: transparent;
-  border: none;
-  border-radius: 0em;
-  box-shadow: none;
+    background: transparent;
+    border: none;
+    border-radius: 0em;
+    box-shadow: none;
 }
+
 .ui.form input:not([type]):focus,
 .ui.form input[type="date"]:focus,
 .ui.form input[type="datetime-local"]:focus,
@@ -235,11 +229,12 @@
 .ui.form input[type="text"]:focus,
 .ui.form input[type="file"]:focus,
 .ui.form input[type="url"]:focus {
-  border-color: #009c95;
-  border-radius: 0em;
-  background: transparent;
-  box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
+    border-color: #009c95;
+    border-radius: 0em;
+    background: transparent;
+    box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
 }
+
 .ui.form input[type="text"],
 .ui.form input[type="email"],
 .ui.form input[type="date"],
@@ -247,55 +242,220 @@
 .ui.form input[type="number"],
 .ui.form input[type="url"],
 .ui.form input[type="tel"] {
-  border-bottom: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
 }
-.ui.form .field.error input:not([type]),.ui.form .field.error input[type=text],.ui.form .field.error input[type=email],.ui.form .field.error input[type=search],.ui.form .field.error input[type=password],.ui.form .field.error input[type=date],.ui.form .field.error input[type=datetime-local],.ui.form .field.error input[type=tel],.ui.form .field.error input[type=time],.ui.form .field.error input[type=file],.ui.form .field.error input[type=url],.ui.form .field.error input[type=number],.ui.form .field.error select,.ui.form .field.error textarea,.ui.form .fields.error .field input:not([type]),.ui.form .fields.error .field input[type=text],.ui.form .fields.error .field input[type=email],.ui.form .fields.error .field input[type=search],.ui.form .fields.error .field input[type=password],.ui.form .fields.error .field input[type=date],.ui.form .fields.error .field input[type=datetime-local],.ui.form .fields.error .field input[type=tel],.ui.form .fields.error .field input[type=time],.ui.form .fields.error .field input[type=file],.ui.form .fields.error .field input[type=url],.ui.form .fields.error .field input[type=number],.ui.form .fields.error .field select,.ui.form .fields.error .field textarea {
+
+.ui.form .field.error input:not([type]),
+.ui.form .field.error input[type=text],
+.ui.form .field.error input[type=email],
+.ui.form .field.error input[type=search],
+.ui.form .field.error input[type=password],
+.ui.form .field.error input[type=date],
+.ui.form .field.error input[type=datetime-local],
+.ui.form .field.error input[type=tel],
+.ui.form .field.error input[type=time],
+.ui.form .field.error input[type=file],
+.ui.form .field.error input[type=url],
+.ui.form .field.error input[type=number],
+.ui.form .field.error select,
+.ui.form .field.error textarea,
+.ui.form .fields.error .field input:not([type]),
+.ui.form .fields.error .field input[type=text],
+.ui.form .fields.error .field input[type=email],
+.ui.form .fields.error .field input[type=search],
+.ui.form .fields.error .field input[type=password],
+.ui.form .fields.error .field input[type=date],
+.ui.form .fields.error .field input[type=datetime-local],
+.ui.form .fields.error .field input[type=tel],
+.ui.form .fields.error .field input[type=time],
+.ui.form .fields.error .field input[type=file],
+.ui.form .fields.error .field input[type=url],
+.ui.form .fields.error .field input[type=number],
+.ui.form .fields.error .field select,
+.ui.form .fields.error .field textarea {
     background: transparent;
 }
-.ui.form .field.error input:not([type]):focus,.ui.form .field.error input[type=text]:focus,.ui.form .field.error input[type=email]:focus,.ui.form .field.error input[type=search]:focus,.ui.form .field.error input[type=password]:focus,.ui.form .field.error input[type=date]:focus,.ui.form .field.error input[type=datetime-local]:focus,.ui.form .field.error input[type=tel]:focus,.ui.form .field.error input[type=time]:focus,.ui.form .field.error input[type=file]:focus,.ui.form .field.error input[type=url]:focus,.ui.form .field.error input[type=number]:focus,.ui.form .field.error select:focus,.ui.form .field.error textarea:focus {
-	background:transparent;
+
+.ui.form .field.error input:not([type]):focus,
+.ui.form .field.error input[type=text]:focus,
+.ui.form .field.error input[type=email]:focus,
+.ui.form .field.error input[type=search]:focus,
+.ui.form .field.error input[type=password]:focus,
+.ui.form .field.error input[type=date]:focus,
+.ui.form .field.error input[type=datetime-local]:focus,
+.ui.form .field.error input[type=tel]:focus,
+.ui.form .field.error input[type=time]:focus,
+.ui.form .field.error input[type=file]:focus,
+.ui.form .field.error input[type=url]:focus,
+.ui.form .field.error input[type=number]:focus,
+.ui.form .field.error select:focus,
+.ui.form .field.error textarea:focus {
+    background: transparent;
 }
-.ui.form .ui.icon.input > .icon {
-  width: 1em;
+
+.ui.form .ui.icon.input>.icon {
+    width: 1em;
 }
+
+
 /*--------------------
       Placeholder
 ---------------------*/
+
+
 /* browsers require these rules separate */
+
 .ui.input input::-webkit-input-placeholder {
-	color: rgba(140, 140, 140, 0.87);
+    color: rgba(140, 140, 140, 0.87);
 }
+
 .ui.input input::-moz-placeholder {
-	color: rgba(140, 140, 140, 0.87);
+    color: rgba(140, 140, 140, 0.87);
 }
+
 .ui.input input:-ms-input-placeholder {
-	color: rgba(140, 140, 140, 0.87);
+    color: rgba(140, 140, 140, 0.87);
 }
+
 .ui.form ::-webkit-input-placeholder {
-  color: rgba(140, 140, 140, 0.87);
+    color: rgba(140, 140, 140, 0.87);
 }
+
 .ui.form :-ms-input-placeholder {
-  color: rgba(140, 140, 140, 0.87);
+    color: rgba(140, 140, 140, 0.87);
 }
+
 .ui.form ::-moz-placeholder {
-  color: rgba(140, 140, 140, 0.87);
+    color: rgba(140, 140, 140, 0.87);
 }
+
 .ui.form :focus::-webkit-input-placeholder {
-  color: rgba(89, 89, 89, 0.87);
+    color: rgba(89, 89, 89, 0.87);
 }
+
 .ui.form :focus:-ms-input-placeholder {
-  color: rgba(89, 89, 89, 0.87);
+    color: rgba(89, 89, 89, 0.87);
 }
+
 .ui.form :focus::-moz-placeholder {
-  color: rgba(89, 89, 89, 0.87);
+    color: rgba(89, 89, 89, 0.87);
 }
+
+
 /*--------- Loader Styles -------------*/
-.main_loader{
+
+.main_loader {
     display: inline;
     padding-left: 0.7em;
     display: none;
 }
-.loader_text{
+
+.loader_text {
     display: inline;
     padding-left: 0.55em;
+}
+
+/*---- Accordion styles -------------*/
+.ui.styled.accordion .title {
+    color: rgba(0, 0, 0, .7);
+}
+
+.ui.accordion.menu.main_accordion {
+    border: 0;
+    padding-bottom: 2em;
+}
+
+.ui.accordion.menu.main_accordion .item {
+    padding: 1em 0em;
+}
+
+.ui.accordion.menu.main_accordion .item .title {
+    padding: 0.9em;
+    background: #009c95;
+    color: #fff;
+}
+
+.ui.accordion.menu.main_accordion .item .title:hover,
+.ui.accordion.menu.main_accordion .item .title.active {
+    background: #21b1ab;
+    transition: background 0.5s ease;
+    -webkit-transition: background 0.5s ease;
+    -moz-transition: background 0.5s ease;
+    -o-transition: background 0.5s ease;
+}
+
+.ui.accordion.menu.main_accordion .item::before {
+    background: none;
+}
+
+.ui.accordion.menu.main_accordion .image {
+    border-radius: 0;
+}
+.ui.accordion.menu.main_accordion .avatar{
+    margin-right: 0.5em;
+    width: 1.8em;
+    height: 1.8em;
+}
+#active_course_accordion .item .title,#completed_course_accordion .item .title,#available_course_accordion .item .title {
+    background: none;
+    color: #757575;
+    border:1px solid rgba(34,36,38,.19);
+    border-radius: .28571429rem;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+#active_course_accordion .item .title:hover,#completed_course_accordion .item .title:hover,#available_course_accordion .item .title:hover,
+#active_course_accordion .item .title.active,#completed_course_accordion .item .title.active,#available_course_accordion .item .title.active {
+    background: rgba(183, 183, 183, 0.27);
+    color:#333;
+}
+#active_course_accordion .content,#completed_course_accordion .content,#available_course_accordion .content{
+    padding: 1.4em 1.8em 0em;
+}
+
+/*------------ Student Home Styles -------------*/
+
+.inline_header {
+    display: inline;
+}
+#message_display{
+    margin-top: 1.8em;
+    margin-bottom: 0em;
+}
+.ui.icon.button.tooltip_btn {
+    margin-left: 0.7em;
+    position: relative;
+    top: -5px;
+}
+.basic_content{
+    padding:1.2em 0em;
+}
+#user_content{
+    margin-top: 0.55em;
+    margin-bottom: 2em;
+}
+#user_content .ui.card > .image > img, .ui.cards > .card > .image > img {
+    width: auto;
+    margin: 0 auto;
+}
+#user_content .ui.cards > .card > .content {
+    background: #e7e7e7;
+}
+#badge{
+    margin-bottom:1.2em;
+}
+.user_rating{
+    padding-top: 1em;
+}
+.ui.positive.button{
+    background-color: #5BB47C;
+}
+.ui.positive.button:hover{
+    background-color: #5abc71;
+}
+.ui.positive.button:active, .ui.positive.button:focus{
+    background-color: #459B64;
 }

@@ -23,6 +23,12 @@ $(function () {
                     prompt: 'Please enter your password'
                 }]
             }
+        },
+        onSuccess: function (e) {
+            e.preventDefault();
+            var fields = $login_form.form('get values');
+            console.log(fields);
+            window.location="/student_home.html"
         }
     });
     $signup_form.form({

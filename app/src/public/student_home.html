@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>eGyan - Simple and Effective Elearning Platform for Everyone</title>
+    <title>eGyan - Student Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/img/logo_mini_fav.png" />
@@ -11,54 +11,104 @@
 </head>
 
 <body>
-    <!-- Top Fixed Hidden Menu -->
-    <div class="ui large top fixed hidden menu">
-        <div class="ui container">
-            <div class="item"><img src="/img/logo.png" alt="eGyan" class="ui" /></div>
-            <div class="right menu">
-                <div class="item">
-                    <a class="ui teal button">Log in</a>
-                </div>
-                <div class="item">
-                    <a class="ui teal button">Sign Up</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Page Contents -->
     <div class="pusher">
         <!-- Main Header -->
-        <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui vertical center aligned segment">
             <div class="ui container">
                 <!-- Top Menu -->
-                <div class="ui large secondary menu">
-                    <div class="item"><img src="/img/logo.png" alt="eGyan" class="ui" /></div>
+                <div class="ui secondary menu">
+                    <div class="item"><a href="/student_home.html"><img src="/img/logo.png" alt="eGyan" class="ui image" /></a></div>
                     <div class="right item">
-                        <a class="ui teal button">Log in</a>
+                        <a class="ui teal button">LOGOUT</a>
                     </div>
                 </div>
             </div>
-            <hr />
-            <div class="ui container">
-                <h2 class="ui inverted header">
-                    A simple and effective elearning platform for everyone.
-                </h2>
-                <h3>Sign up to get started. It's completely free!</h3>
-                <a class="ui big teal button">SIGN UP</a>
+        </div>
+        <!-- Display Messages -->
+        <div class="ui aligned basic segment" id="message_display">
+            <div class="ui centered grid">
+                <div class="twelve wide column">
+                    <h2 class="ui header user_welcome">
+                        <i class="user icon"></i>
+                        <div class="content">
+                            <em>Hi Student,</em>
+                        </div>
+                    </h2>
+                </div>
             </div>
         </div>
         <!-- Main Content -->
-        <div class="ui vertical stripe segment">
-            <div class="ui middle aligned stackable grid container">
+        <div class="ui vertical padded segment">
+            <div class="ui middle aligned stackable grid container" id="user_content">
                 <div class="row">
                     <div class="sixteen wide column">
-                        <h1 class="ui header">Courses</h1>
+                        <h1 class="ui header inline_header">Your Badges</h1>
+                        <div class="ui icon tiny teal button tooltip_btn"><i class="large help icon"></i></div>
+                        <div class="ui inverted popup transition hidden help_popup">
+                            <p>Collect points to get more badges. The more courses you participate and complete you will get
+                                more badges.</p>
+                        </div>
+                        <hr class="main_hr" />
+                        <p class="basic_content"><strong>Total Points: </strong><span id="total_points">2750pts</span></p>
+                        <div class="ui seven doubling cards" id="badge">
+                            <div class="card">
+                                <div class="image">
+                                    <img class="ui image" src="/img/member_badge.png">
+                                </div>
+                                <div class="content">
+                                    <div class="ui center aligned tiny header">Member Badge</div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="image">
+                                    <img class="ui image" src="/img/beginner_badge.png">
+                                </div>
+                                <div class="content">
+                                    <div class="ui center aligned tiny header">Beginner Badge</div>
+                                    <div class="ui center aligned"><span class="ui grey label">100pts</span></div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="image">
+                                    <img class="ui image" src="/img/intermediate_badge.png">
+                                </div>
+                                <div class="content">
+                                    <div class="ui center aligned tiny header">Intermediate Badge</div>
+                                    <div class="ui center aligned"><span class="ui grey label">500pts</span></div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="image">
+                                    <img class="ui image" src="/img/pro_badge.png">
+                                </div>
+                                <div class="content">
+                                    <div class="ui center aligned tiny header">Pro Badge</div>
+                                    <div class="ui center aligned"><span class="ui grey label">1000pts</span></div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="image">
+                                    <img class="ui image" src="/img/ultimate_badge.png">
+                                </div>
+                                <div class="content">
+                                    <div class="ui center aligned tiny header">Ultimate Badge</div>
+                                    <div class="ui center aligned"><span class="ui grey label">2500pts</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of your Badges -->
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <h1 class="ui header">Active Courses</h1>
                         <hr class="main_hr" />
                         <div class="course_content">
-                            <div class="ui vertical fluid accordion menu" id="course_accordion">
+                            <div class="ui vertical fluid accordion menu main_accordion" id="active_course_accordion">
                                 <div class="item">
-                                    <div class="title">
+                                    <div class="title active">
                                         <i class="dropdown icon"></i> <img src="/uploads/html5.png" class="ui avatar image"
                                         /> <strong>Introduction to HTML5</strong>
                                         <div class="star_wrapper">
@@ -66,7 +116,7 @@
                                         </div>
                                         <div class="clear_fix"></div>
                                     </div>
-                                    <div class="content">
+                                    <div class="content active">
                                         <div class="ui grid">
                                             <div class="row">
                                                 <div class="two wide column"><strong>About:</strong></div>
@@ -85,11 +135,23 @@
                                                 <div class="two wide column"><strong>Rating:</strong></div>
                                                 <div class="fourteen wide column">5 out of 5 by 320</div>
                                             </div>
+                                            <div class="row">
+                                                <div class="two wide column"><strong>Status:</strong></div>
+                                                <div class="fourteen wide column"><em>Not yet Completed</em></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="column">
+                                                    <a href="/course_home.html" class="ui teal button">
+                                                        CONTINUE
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="item">
-                                    <div class="title">
+                                    <div class="title active">
                                         <i class="dropdown icon"></i> <img src="/uploads/css3.png" class="ui avatar image"
                                         /><strong>Introduction to CSS3</strong>
                                         <div class="star_wrapper">
@@ -97,16 +159,11 @@
                                         </div>
                                         <div class="clear_fix"></div>
                                     </div>
-                                    <div class="content">
+                                    <div class="content active">
                                         <div class="ui grid">
                                             <div class="row">
                                                 <div class="two wide column"><strong>About:</strong></div>
-                                                <div class="fourteen wide column">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis
-                                                    pellentesque metus id lacinia. Nunc dapibus pulvinar auctor. Duis nec
-                                                    sem at orci commodo viverra id in ipsum. Fusce tellus nisl, vestibulum
-                                                    sed rhoncus at, pretium non libero. Cras vel lacus ut ipsum vehicula
-                                                    aliquam at quis urna. Nunc ac ornare ante. Fusce lobortis neque in diam
-                                                    vulputate quis semper sem elementum.</div>
+                                                <div class="fourteen wide column">Description about the course.</div>
                                             </div>
                                             <div class="row">
                                                 <div class="two wide column"><strong>Enrolled:</strong></div>
@@ -116,9 +173,123 @@
                                                 <div class="two wide column"><strong>Rating:</strong></div>
                                                 <div class="fourteen wide column">4 out of 5 by 250</div>
                                             </div>
+                                            <div class="row">
+                                                <div class="two wide column"><strong>Status:</strong></div>
+                                                <div class="fourteen wide column"><em>Not yet Completed</em></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="column">
+                                                    <a href="/course_home.html" class="ui teal button">
+                                                        CONTINUE
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Active Courses -->
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <h1 class="ui header">Completed Courses</h1>
+                        <hr class="main_hr" />
+                        <div class="course_content">
+                            <div class="ui vertical fluid accordion menu main_accordion" id="completed_course_accordion">
+                                <div class="item">
+                                    <div class="title">
+                                        <i class="dropdown icon"></i> <img src="/uploads/html5.png" class="ui avatar image"
+                                        /> <strong>Advanced HTML5</strong>
+                                        <div class="star_wrapper">
+                                            <div class="ui star rating" data-rating="5" data-max-rating="5"></div>
+                                        </div>
+                                        <div class="clear_fix"></div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="ui grid">
+                                            <div class="row">
+                                                <div class="two wide column"><strong>About:</strong></div>
+                                                <div class="fourteen wide column">Description about the course.</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="two wide column"><strong>Enrolled:</strong></div>
+                                                <div class="fourteen wide column">500</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="two wide column"><strong>Rating:</strong></div>
+                                                <div class="fourteen wide column">5 out of 5 by 320
+                                                    <p class="user_rating">Your Rating: 5</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="two wide column"><strong>Status:</strong></div>
+                                                <div class="fourteen wide column">Completed</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="column">
+                                                    <a href="/course_home.html" class="ui positive button">
+                                                        GO TO COURSE
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="title">
+                                        <i class="dropdown icon"></i> <img src="/uploads/css3.png" class="ui avatar image"
+                                        /><strong>Advanced CSS3</strong>
+                                        <div class="star_wrapper">
+                                            <div class="ui star rating" data-rating="4" data-max-rating="5"></div>
+                                        </div>
+                                        <div class="clear_fix"></div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="ui grid">
+                                            <div class="row">
+                                                <div class="two wide column"><strong>About:</strong></div>
+                                                <div class="fourteen wide column">Description about the course.</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="two wide column"><strong>Enrolled:</strong></div>
+                                                <div class="fourteen wide column">250</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="two wide column"><strong>Rating:</strong></div>
+                                                <div class="fourteen wide column">4 out of 5 by 250
+                                                    <p class="user_rating">Your Rating: <em>Not yet rated</em></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="two wide column"><strong>Status:</strong></div>
+                                                <div class="fourteen wide column">Completed</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="column">
+                                                     <a href="/course_home.html" class="ui positive button">
+                                                        GO TO COURSE
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Completed courses -->
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <h1 class="ui header">Available Courses</h1>
+                        <hr class="main_hr" />
+                        <div class="course_content">
+                            <div class="ui vertical fluid accordion menu main_accordion" id="available_course_accordion">
                                 <div class="item">
                                     <div class="title">
                                         <i class="dropdown icon"></i> <img src="/uploads/jquery.png" class="ui avatar image"
@@ -132,12 +303,7 @@
                                         <div class="ui grid">
                                             <div class="row">
                                                 <div class="two wide column"><strong>About:</strong></div>
-                                                <div class="fourteen wide column">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis
-                                                    pellentesque metus id lacinia. Nunc dapibus pulvinar auctor. Duis nec
-                                                    sem at orci commodo viverra id in ipsum. Fusce tellus nisl, vestibulum
-                                                    sed rhoncus at, pretium non libero. Cras vel lacus ut ipsum vehicula
-                                                    aliquam at quis urna. Nunc ac ornare ante. Fusce lobortis neque in diam
-                                                    vulputate quis semper sem elementum.</div>
+                                                <div class="fourteen wide column">Description about the course.</div>
                                             </div>
                                             <div class="row">
                                                 <div class="two wide column"><strong>Enrolled:</strong></div>
@@ -147,6 +313,13 @@
                                                 <div class="two wide column"><strong>Rating:</strong></div>
                                                 <div class="fourteen wide column">4 out of 5 by 100</div>
                                             </div>
+                                            <div class="row">
+                                                <div class="column">
+                                                     <a href="/course_home.html" class="ui primary button">
+                                                        ENROLL
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -154,6 +327,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- End of Available courses -->
             </div>
         </div>
 
@@ -167,86 +341,12 @@
             </div>
         </div>
     </div>
-    <!--Modal-->
-    <div class="ui basic small modal login_modal">
-        <i class="close icon"></i>
-        <div class="ui center aligned large header"><img src="/img/logo_mini.png" class="ui image"> LOGIN</div>
-        <div class="content">
-            <div class="ui middle aligned grid">
-                <div class="column">
-                    <form class="ui form" id="login_form">
-                        <div class="ui stacked segment">
-                            <div class="field">
-                                <label>Email</label>
-                                <div class="ui left icon input">
-                                    <i class="mail icon"></i>
-                                    <input type="text" name="email" placeholder="E-mail address">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Password</label>
-                                <div class="ui left icon input">
-                                    <i class="lock icon"></i>
-                                    <input type="password" name="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="ui large teal submit flat button">LOGIN</div>
-                        </div>
-
-                        <div class="ui error message"></div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="ui basic small modal signup_modal">
-        <i class="close icon"></i>
-        <div class="ui center aligned large header"><img src="/img/logo_mini.png" class="ui image">SIGN UP</div>
-        <div class="content">
-            <div class="ui middle aligned grid">
-                <div class="column">
-                    <form class="ui form" id="signup_form">
-                        <div class="ui stacked segment">
-                            <div class="field">
-                                <label>Name</label>
-                                <div class="ui left icon input">
-                                    <i class="user icon"></i>
-                                    <input type="text" name="name" placeholder="Full Name">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Email</label>
-                                <div class="ui left icon input">
-                                    <i class="mail icon"></i>
-                                    <input type="text" name="email" placeholder="E-mail address">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Password</label>
-                                <div class="ui left icon input">
-                                    <i class="lock icon"></i>
-                                    <input type="password" name="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="ui large teal submit flat button">SIGN UP</div>
-                        </div>
-
-                        <div class="ui error message"></div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End of Modal -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script src="/js/semantic.min.js"></script>
-    <script src="/js/homepage.js"></script>
-    <script src="/js/auth.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/student_home.js"></script>
 </body>
 
 </html>

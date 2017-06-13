@@ -74,6 +74,17 @@ app.post("/signup", function (req, res) {
   }
 });
 
+app.get('getrole/:role', function (req, res) {
+  var roles = req.get('X-Hasura-Allowed-Roles');
+
+  // Check if allowed roles contains the rolename mentioned in the URL
+  if (roles.indexOf(req.params.role) > -1) {
+    res.send('Hey, you have the <b>' + req.params.role + '</b> role');
+  } else {
+    res.status(403).send('DENIED: Only a user with the role <b>' + req.params.role + '</b> can access this endpoint');
+  }
+});
+
 //loading static files
 app.use(express.static(path.join(__dirname, 'public')));
 
