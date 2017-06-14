@@ -82,11 +82,11 @@ app.post("/signup", function (req, res) {
   }
 });
 
-app.get('/getinfo/:role', function (req, res) {
+app.get('/getinfo', function (req, res) {
   var result = [];
   var info = {
     id: req.get('X-Hasura-User-Id'),
-    role: req.get('X-Hasura-Allowed-Roles')
+    role: req.get('X-Hasura-Role')
   };
   result.push(info);
   res.send(JSON.stringify(result));
