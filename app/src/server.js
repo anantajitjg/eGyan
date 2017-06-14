@@ -82,22 +82,14 @@ app.post("/signup", function (req, res) {
   }
 });
 
-app.get('/getinfo', function (req, res) {
-  var request_url = auth_url + '/user/account/info';
+app.get('/getinfo/:role', function (req, res) {
   var result = [];
   var info = {
-    id: req.get('X-Hasura-Id'),
-    role: req.get('X-Hasura-Role')
+    id: req.get('X-Hasura-User-Id'),
+    role: req.get('X-Hasura-Allowed-Roles')
   };
   result.push(info);
-  request({
-    url: request_url,
-    method: "GET",
-    json: true
-  }, function (error, response, body) {
-    result.push(response.body);
-    res.status(response.statusCode).send(JSON.stringify(result));
-  });
+  res.send(JSON.stringify(result));
 });
 
 //loading static files
