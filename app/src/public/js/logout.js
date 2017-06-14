@@ -1,7 +1,11 @@
 $(function () {
     $('.logout_btn').click(function () {
-        $.getJSON(auth_url + "/user/logout").done(function (res) {
-            console.log(res);
+        $.ajax({
+            method: "GET",
+            url: auth_url + "/user/logout",
+            contentType: "application/json"
+        }).done(function (res) {
+            //console.log(res);
             window.location = "/logout.html";
         }).fail(function () {
             window.location = "/";
