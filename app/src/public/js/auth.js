@@ -1,6 +1,9 @@
 $(function () {
     var $login_form = $('#login_form');
     var $signup_form = $('#signup_form');
+    $.ajaxSetup({
+        crossDomain: true
+    });
 
     $login_form.form({
         fields: {
