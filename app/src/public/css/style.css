@@ -459,3 +459,8 @@
 .ui.positive.button:active, .ui.positive.button:focus{
     background-color: #459B64;
 }
+/*------- Other styles ---------*/
+.base_container{
+    padding-top:1.8em;
+    min-height:400px;
+}

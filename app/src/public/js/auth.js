@@ -21,14 +21,41 @@ $(function () {
                 rules: [{
                     type: 'empty',
                     prompt: 'Please enter your password'
+                }, {
+                    type: 'minLength[8]',
+                    prompt: 'Your password must be at least {ruleValue} characters'
                 }]
+            }
+        },
+        onInvalid: function () {
+            if ($('.user_error').text() !== '') {
+                $('.user_error').css("display", "none");
             }
         },
         onSuccess: function (e) {
             e.preventDefault();
             var fields = $login_form.form('get values');
-            console.log(fields);
-            window.location="/student_home.html"
+            //console.log(fields);
+            $("#login_loader").css("display", "inline");
+            $("#login_btn").addClass("disabled");
+            $('form .message').html("");
+            $('.user_error').css("display", "none");
+            var data = JSON.stringify(fields);
+            $.ajax({
+                method: "POST",
+                url: auth_url + "/login",
+                data: data,
+                contentType: "application/json"
+            }).done(function (res) {
+                //console.log(res);
+                window.location = "/student_home.html";
+            }).fail(function (xhr) {
+                //console.log(xhr);
+                $("#login_btn").removeClass("disabled");
+                $login_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>Email or Password is wrong!</div><p>Please try again!</p></div>");
+            }).always(function () {
+                $("#login_loader").css("display", "none");
+            });
         }
     });
     $signup_form.form({
@@ -57,6 +84,9 @@ $(function () {
                 rules: [{
                     type: 'empty',
                     prompt: 'Please enter your password'
+                }, {
+                    type: 'minLength[8]',
+                    prompt: 'Your password must be at least {ruleValue} characters'
                 }]
             }
         },
@@ -87,8 +117,12 @@ $(function () {
             }).fail(function (xhr) {
                 //console.log(xhr);
                 $("#signup_btn").removeClass("disabled");
-                $signup_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>There were some errors!</div><p>" + xhr.responseText + "</p></div>");
-
+                try {
+                    var result = JSON.parse(xhr.responseText);
+                    $signup_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>There were some errors!</div><p>" + result.message + "</p></div>");
+                } catch (e) {
+                    $signup_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>Error occurred! Please try again after some time.</div></div>");
+                }
             }).always(function () {
                 $("#signup_loader").css("display", "none");
             });

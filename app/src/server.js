@@ -64,25 +64,40 @@ app.post("/signup", function (req, res) {
           if (response.body.affected_rows >= 1) {
             res.status(200).send("Successfully Registered!");
           } else {
-            res.status(500).send("There was some problem registering!");
+            res.status(500).send(JSON.stringify({
+              message: "There was some problem registering!"
+            }));
           }
         });
       } else {
-        res.status(response.statusCode).send(JSON.stringify(response.body.message));
+        if (response.statusCode == 409) {
+          res.status(409).send(JSON.stringify({
+            message: "Email already exists!"
+          }));
+        } else {
+          res.status(response.statusCode).send(JSON.stringify(response.body));
+        }
       }
     });
   }
 });
 
-app.get('/getrole/:role', function (req, res) {
-  var roles = req.get('X-Hasura-Allowed-Roles');
-
-  // Check if allowed roles contains the rolename mentioned in the URL
-  if (roles.indexOf(req.params.role) > -1) {
-    res.send('Hey, you have the <b>' + req.params.role + '</b> role');
-  } else {
-    res.status(403).send('DENIED: Only a user with the role <b>' + req.params.role + '</b> can access this endpoint');
-  }
+app.get('/getinfo', function (req, res) {
+  var request_url = auth_url + '/user/account/info';
+  var result = [];
+  var info = {
+    id: req.get('X-Hasura-Id'),
+    role: req.get('X-Hasura-Role')
+  };
+  result.push(info);
+  request({
+    url: request_url,
+    method: "GET",
+    json: true
+  }, function (error, response, body) {
+    result.push(response.body);
+    res.status(response.statusCode).send(JSON.stringify(result));
+  });
 });
 
 //loading static files
