@@ -50,8 +50,8 @@ $(function () {
                 data: data,
                 contentType: "application/json"
             }).done(function (res) {
-                console.log(res);
-                //window.location = "/student_home.html";
+                //console.log(res);
+                window.location = "/student_home.html";
             }).fail(function (xhr) {
                 //console.log(xhr);
                 $("#login_btn").removeClass("disabled");

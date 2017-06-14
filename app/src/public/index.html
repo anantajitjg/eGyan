@@ -11,6 +11,12 @@
 </head>
 
 <body>
+    <!-- Loader -->
+    <!--<div class="ui page_loader" style="background-color: #fff;">
+        <div class="content">
+            <div class="ui text loader">Loading</div>
+        </div>
+    </div>-->
     <!-- Top Fixed Hidden Menu -->
     <div class="ui large top fixed hidden menu">
         <div class="ui container">
@@ -55,7 +61,7 @@
                     <div class="sixteen wide column">
                         <h1 class="ui header">Courses</h1>
                         <hr class="main_hr" />
-                        <div class="course_content">
+                        <div class="course_content loader_content dimmer">
                             <div class="ui vertical fluid accordion menu main_accordion" id="course_accordion">
                                 <div class="item">
                                     <div class="title">
@@ -190,7 +196,11 @@
                                     <input type="password" name="password" placeholder="Password">
                                 </div>
                             </div>
-                            <div class="ui large teal submit flat button" id="login_btn">LOGIN</div><div class="main_loader" id="login_loader"><div class="ui active inline loader"></div><div class="loader_text">Logging in...</div></div>
+                            <div class="ui large teal submit flat button" id="login_btn">LOGIN</div>
+                            <div class="main_loader" id="login_loader">
+                                <div class="ui active inline loader"></div>
+                                <div class="loader_text">Logging in...</div>
+                            </div>
                         </div>
 
                         <div class="ui error message"></div>
@@ -230,7 +240,11 @@
                                     <input type="password" name="password" placeholder="Password">
                                 </div>
                             </div>
-                            <div class="ui large teal submit flat button" id="signup_btn">SIGN UP</div><div class="main_loader" id="signup_loader"><div class="ui active inline loader"></div><div class="loader_text">Registering...</div></div>
+                            <div class="ui large teal submit flat button" id="signup_btn">SIGN UP</div>
+                            <div class="main_loader" id="signup_loader">
+                                <div class="ui active inline loader"></div>
+                                <div class="loader_text">Registering...</div>
+                            </div>
                         </div>
 
                         <div class="ui error message"></div>
