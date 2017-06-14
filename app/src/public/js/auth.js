@@ -47,6 +47,9 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: auth_url + "/login",
+                xhrFields: {
+                    withCredentials: true
+                },
                 data: data,
                 contentType: "application/json"
             }).done(function (res) {
