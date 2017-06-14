@@ -6,7 +6,14 @@ $(function () {
         }
     });
     //user info
-    $.getJSON(auth_url + "/user/account/info").done(function (res) {
+    $.ajax({
+        method: "GET",
+        url: auth_url + "/user/account/info",
+        xhrFields: {
+            withCredentials: true
+        },
+        contentType: "application/json"
+    }).done(function (res) {
         console.log(res);
     }).fail(function (xhr) {
         console.log(xhr.responseText);
