@@ -6,10 +6,8 @@ var request = require('request');
 var app = express();
 app.use(bodyParser.json());
 
-// var auth_url = "https://auth.festival40.hasura-app.io";
-// var data_url = "https://data.festival40.hasura-app.io";
-var auth_url = "https://auth.airsick30.hasura-app.io";
-var data_url = "https://data.airsick30.hasura-app.io";
+var auth_url = "https://auth.festival40.hasura-app.io";
+var data_url = "https://data.festival40.hasura-app.io";
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', "index.html"));

@@ -97,6 +97,10 @@
     clear: both;
 }
 
+#course_accordion .content {
+    padding: 1em 1.8em;
+}
+
 .star_wrapper {
     float: right;
     margin-right: 10px;
@@ -468,6 +472,7 @@
 
 #badge {
     margin-bottom: 1.2em;
+    width:90%;
 }
 
 .user_rating {

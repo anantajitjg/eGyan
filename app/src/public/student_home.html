@@ -33,7 +33,7 @@
                     <h2 class="ui header user_welcome">
                         <i class="user icon"></i>
                         <div class="content">
-                            <em>Hi,</em>
+                            <em>Hi <span id="displayName"></span></em>
                         </div>
                     </h2>
                 </div>
@@ -51,9 +51,10 @@
                                 more badges.</p>
                         </div>
                         <hr class="main_hr" />
-                        <p class="basic_content"><strong>Total Points: </strong><span id="total_points">2750pts</span></p>
-                        <div class="ui seven doubling cards" id="badge">
-                            <div class="card">
+                        <p class="basic_content"><strong>Total Points: </strong><span id="total_points">0pts</span></p>
+                        <div class="ui five doubling cards loader_content" id="badge">
+                            <div class="ui active centered inline large text loader">Loading Badges...</div>
+                            <!--<div class="card">
                                 <div class="image">
                                     <img class="ui image" src="/img/member_badge.png">
                                 </div>
@@ -96,7 +97,8 @@
                                     <div class="ui center aligned tiny header">Ultimate Badge</div>
                                     <div class="ui center aligned"><span class="ui grey label">2500pts</span></div>
                                 </div>
-                            </div>
+                            </div>-->
+                            <!-- End of badges -->
                         </div>
                     </div>
                 </div>
@@ -105,9 +107,11 @@
                     <div class="sixteen wide column">
                         <h1 class="ui header">Active Courses</h1>
                         <hr class="main_hr" />
-                        <div class="course_content">
+                        <div class="course_content loader_content">
                             <div class="ui vertical fluid accordion menu main_accordion" id="active_course_accordion">
-                                <div class="item">
+                                <div class="ui active centered inline large text loader">Loading Courses...</div>
+                                <!-- Active Course Display -->
+                                <!--<div class="item">
                                     <div class="title active">
                                         <i class="dropdown icon"></i> <img src="/uploads/html5.png" class="ui avatar image"
                                         /> <strong>Introduction to HTML5</strong>
@@ -186,7 +190,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 
                             </div>
                         </div>
@@ -197,9 +201,10 @@
                     <div class="sixteen wide column">
                         <h1 class="ui header">Completed Courses</h1>
                         <hr class="main_hr" />
-                        <div class="course_content">
+                        <div class="course_content loader_content">
                             <div class="ui vertical fluid accordion menu main_accordion" id="completed_course_accordion">
-                                <div class="item">
+                                <div class="ui active centered inline large text loader">Loading Courses...</div>
+                                <!--<div class="item">
                                     <div class="title">
                                         <i class="dropdown icon"></i> <img src="/uploads/html5.png" class="ui avatar image"
                                         /> <strong>Advanced HTML5</strong>
@@ -277,7 +282,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 
                             </div>
                         </div>
@@ -288,9 +293,10 @@
                     <div class="sixteen wide column">
                         <h1 class="ui header">Available Courses</h1>
                         <hr class="main_hr" />
-                        <div class="course_content">
+                        <div class="course_content loader_content">
                             <div class="ui vertical fluid accordion menu main_accordion" id="available_course_accordion">
-                                <div class="item">
+                                <div class="ui active centered inline large text loader">Loading Courses...</div>
+                                <!--<div class="item">
                                     <div class="title">
                                         <i class="dropdown icon"></i> <img src="/uploads/jquery.png" class="ui avatar image"
                                         /><strong>Introduction to jQuery</strong>
@@ -322,7 +328,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>
