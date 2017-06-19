@@ -18,7 +18,7 @@ if (env === "dev") {
   auth_url = "https://auth.festival40.hasura-app.io";
   data_url = "https://data.festival40.hasura-app.io";
 } else {
-  auth_url = "http://auth.hasura/";
+  auth_url = "http://auth.hasura";
   data_url = "http://data.hasura";
 }
 
