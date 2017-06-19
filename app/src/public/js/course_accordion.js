@@ -1,5 +1,5 @@
 function displayAccordionInfo(accordion_selector, message) {
-    accordion_selector.css("display", "none").html("<div class='ui info message'><div class='ui header'><em>message</em></div></div>").fadeIn();
+    accordion_selector.css("display", "none").html("<div class='ui info message'><div><em>" + message + "</em></div></div>").fadeIn();
 }
 
 function displayAccordionError(accordion_selector) {
@@ -12,8 +12,10 @@ function getCourseStatusContent(id, status) {
     if (status === "active" || status === "completed" || status === "enroll") {
         button_content = "<div class='row'><div class='column'><a href='/course/id/" + id + "' class='ui ";
         if (status === "active" || status === "completed") {
-            status_content = "<div class='row'><div class='two wide column'><strong>Status:</strong></div><div class='fourteen wide column'>" + status === "active" ? "<em>Not yet Completed</em>" : "Completed" + "</div></div>";
-            button_content += status === "active" ? "teal button'>CONTINUE" : "positive button'>GO TO COURSE";
+            var status_display = status === "active" ? "<em>Not yet Completed</em>" : "Completed";
+            var button_display = status === "active" ? "teal button'>CONTINUE" : "positive button'>GO TO COURSE";
+            status_content = "<div class='row'><div class='two wide column'><strong>Status:</strong></div><div class='fourteen wide column'>" + status_display + "</div></div>";
+            button_content += button_display;
         } else {
             button_content += "primary button'>ENROLL";
         }
@@ -52,7 +54,7 @@ function displayAccordion(data, accordion_selector, course_status) {
             course_info.logo = courses[i].course_logo;
             course_info.rating = courses[i].course_act_rating ? courses[i].course_act_rating.rating : 0;
             course_info.users_rated = courses[i].course_act_rating ? courses[i].course_act_rating.count : 0;
-            course_info.user_rating = courses[i].user_course_rating ? courses[i].user_course_rating.rating : 0;
+            course_info.user_rating = courses[i].user_course_rating ? courses[i].user_course_rating.length > 0 ? courses[i].user_course_rating[0].rating : 0 : 0;
             course_info.enrolled = courses[i].enrolled_count ? courses[i].enrolled_count.enrolled : 0;
             //console.table(course_info);
             var active_class = course_status === "active" ? "active" : "";
