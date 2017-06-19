@@ -453,7 +453,12 @@
     position: relative;
     top: -5px;
 }
-
+#displayName{
+    display: none;
+}
+#total_points{
+    display: none;
+}
 .basic_content {
     padding: 1.2em 0em;
 }
