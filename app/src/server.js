@@ -148,16 +148,18 @@ app.post("/signup", function (req, res) {
         request({
           url: data_query_url,
           method: "POST",
+          json: true,
           headers: headers,
           body: data_query
         }, function (error, response, body) {
-          if (response.body.affected_rows >= 1) {
-            res.status(200).send("Successfully Registered!");
-          } else {
-            res.status(500).send(JSON.stringify({
-              message: "There was some problem registering!"
-            }));
-          }
+          res.status(response.statusCode).send(JSON.stringify(response.body));
+          // if (response.body.affected_rows >= 1) {
+          //   res.status(200).send("Successfully Registered!");
+          // } else {
+          //   res.status(500).send(JSON.stringify({
+          //     message: "There was some problem registering!"
+          //   }));
+          // }
         });
       } else {
         if (response.statusCode == 409) {
