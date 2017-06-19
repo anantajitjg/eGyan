@@ -6,7 +6,7 @@ var request = require('request');
 var app = express();
 app.use(bodyParser.json());
 
-var env = "dev";
+var env = "prod";
 var auth_url = "";
 var data_url = "";
 var headers = {
