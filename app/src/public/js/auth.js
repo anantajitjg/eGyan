@@ -51,7 +51,7 @@ $(function () {
                 contentType: "application/json"
             }).done(function (res) {
                 //console.log(res);
-                window.location = "/student_home.html";
+                window.location = "/student";
             }).fail(function (xhr) {
                 //console.log(xhr);
                 $("#login_btn").removeClass("disabled");

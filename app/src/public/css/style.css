@@ -370,6 +370,9 @@
     border: 0;
     padding-bottom: 2em;
 }
+.ui.vertical.menu.main_accordion{
+    box-shadow: none;
+}
 
 .ui.accordion.menu.main_accordion .item {
     padding: 1em 0em;

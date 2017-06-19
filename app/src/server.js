@@ -12,6 +12,16 @@ var data_url = "https://data.festival40.hasura-app.io";
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', "index.html"));
 });
+app.get('/student', function (req, res) {
+  res.sendFile(path.join(__dirname, 'template', "student_home.html"));
+});
+app.get('/course', function (req, res) {
+  res.sendFile(path.join(__dirname, 'template', "course_home.html"));
+});
+app.get('/logout', function (req, res) {
+  res.sendFile(path.join(__dirname, 'template', "logout.html"));
+});
+
 app.post("/signup", function (req, res) {
   var request_url = auth_url + '/signup';
   var data_query_url = data_url + "/v1/query";

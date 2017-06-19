@@ -6,7 +6,7 @@ $(function () {
             contentType: "application/json"
         }).done(function (res) {
             //console.log(res);
-            window.location = "/logout.html";
+            window.location = "/logout";
         }).fail(function () {
             window.location = "/";
         });
