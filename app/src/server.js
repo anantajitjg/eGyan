@@ -99,46 +99,47 @@ app.get('/course/id/:id', function (req, res) {
     };
     //display the course
     makePOSTRequest(fetch_course_details_query, function (error, response) {
-      if (response.statusCode == 200) {
-        if (response.body.length > 0) {
-          var courseStatusInfo = {};
-          var statusCheck = response.body[0].user_course_status.length;
-          courseStatusInfo.available = statusCheck === 0 ? true : false;
-          courseStatusInfo.completed = statusCheck > 0 ? response.body[0].user_course_status[0].status : false;
-          if (statusCheck === 0) {
-            //query data
-            var insert_course_status = {
-              "type": "insert",
-              "args": {
-                "table": "course_status",
-                "objects": [{
-                  "user_id": userInfo.id,
-                  "course_id": course_id
-                }]
-              }
-            };
-            //enroll in course
-            makePOSTRequest(insert_course_status, function (error, response) {
-              if (response.body.affected_rows < 1) {
-                res.redirect('/student');
-              }
-            });
-          }
-          res.render('course', {
-            title: 'eGyan - ' + response.body[0].name + ' Course',
-            courseStatus: courseStatusInfo,
-            courseLogo: response.body[0].course_logo,
-            courseHeading: response.body[0].name,
-            courseDescription: response.body[0].about,
-            contentHeader: "Syllabus",
-            content: response.body[0].syllabus
-          });
-        } else {
-          res.redirect('/student');
-        }
-      } else {
-        res.redirect('/student');
-      }
+      res.json(response);
+      // if (response.statusCode == 200) {
+      //   if (response.body.length > 0) {
+      //     var courseStatusInfo = {};
+      //     var statusCheck = response.body[0].user_course_status.length;
+      //     courseStatusInfo.available = statusCheck === 0 ? true : false;
+      //     courseStatusInfo.completed = statusCheck > 0 ? response.body[0].user_course_status[0].status : false;
+      //     if (statusCheck === 0) {
+      //       //query data
+      //       var insert_course_status = {
+      //         "type": "insert",
+      //         "args": {
+      //           "table": "course_status",
+      //           "objects": [{
+      //             "user_id": userInfo.id,
+      //             "course_id": course_id
+      //           }]
+      //         }
+      //       };
+      //       //enroll in course
+      //       makePOSTRequest(insert_course_status, function (error, response) {
+      //         if (response.body.affected_rows < 1) {
+      //           res.redirect('/student');
+      //         }
+      //       });
+      //     }
+      //     res.render('course', {
+      //       title: 'eGyan - ' + response.body[0].name + ' Course',
+      //       courseStatus: courseStatusInfo,
+      //       courseLogo: response.body[0].course_logo,
+      //       courseHeading: response.body[0].name,
+      //       courseDescription: response.body[0].about,
+      //       contentHeader: "Syllabus",
+      //       content: response.body[0].syllabus
+      //     });
+      //   } else {
+      //     res.redirect('/student');
+      //   }
+      // } else {
+      //   res.redirect('/student');
+      // }
     });
   } else {
     res.redirect('/student');
