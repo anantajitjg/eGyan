@@ -1,5 +1,6 @@
 $(function () {
     $('.logout_btn').click(function () {
+        $(this).addClass("loading disabled");
         $.ajax({
             method: "GET",
             url: auth_url + "/user/logout",

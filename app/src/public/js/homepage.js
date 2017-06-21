@@ -61,6 +61,6 @@ $(function () {
         //console.log(xhr);
         displayAccordionError($('#course_accordion'));
     }).always(function () {
-        $("#course_loader").hide();
+        $(".course_loader").hide();
     });
 });

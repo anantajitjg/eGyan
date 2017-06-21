@@ -1,7 +1,6 @@
 $(function () {
-    //Accordion
-    $('#course_accordion').accordion();
-    // Rating
-    $('.ui.rating')
-        .rating();
+    //For closing messages
+    $(".message .close").on('click', function () {
+        $(this).closest('.message').transition('fade');
+    });
 });

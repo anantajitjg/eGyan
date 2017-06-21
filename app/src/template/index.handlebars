@@ -1,0 +1,56 @@
+<!-- Top Fixed Hidden Menu -->
+<div class="ui large top fixed hidden menu">
+    <div class="ui container">
+        <div class="item"><img src="/img/logo.png" alt="eGyan" class="ui" /></div>
+        <div class="right menu">
+            <div class="item">
+                <a class="ui teal button login_trigger">Log in</a>
+            </div>
+            <div class="item">
+                <a class="ui teal button signup_trigger">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page Contents -->
+<div class="pusher">
+    <!-- Main Header -->
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui container">
+            <!-- Top Menu -->
+            <div class="ui large secondary menu">
+                <div class="item"><img src="/img/logo.png" alt="eGyan" class="ui" /></div>
+                <div class="right item">
+                    <a class="ui teal button login_trigger">Log in</a>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="ui container">
+            <h2 class="ui inverted header">
+                A simple and effective elearning platform for everyone.
+            </h2>
+            <h3>Sign up to get started. It's completely free!</h3>
+            <a class="ui big teal button signup_trigger">SIGN UP</a>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            <!-- Course Display -->
+            {{> courses courseType="Courses" courseTypeId="course_accordion" }}
+        </div>
+    </div>
+    <!-- Footer -->
+    {{> footer }}
+</div>
+<!--Modal-->
+{{> modalLogin }} {{> modalSignUp }}
+<!-- End of Modal -->
+<!-- Scripts -->
+{{> scriptsCommon }}
+<!-- Module Specific Scripts -->
+<script src="/js/course_accordion.js"></script>
+<script src="/js/homepage.js"></script>
+<script src="/js/auth.js"></script>

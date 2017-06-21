@@ -10,14 +10,14 @@ function getCourseStatusContent(id, status) {
     var status_content = "",
         button_content = "";
     if (status === "active" || status === "completed" || status === "enroll") {
-        button_content = "<div class='row'><div class='column'><a href='/course/id/" + id + "' class='ui ";
+        button_content = "<div class='row'><div class='column'><a href='/course/id/" + id;
         if (status === "active" || status === "completed") {
             var status_display = status === "active" ? "<em>Not yet Completed</em>" : "Completed";
-            var button_display = status === "active" ? "teal button'>CONTINUE" : "positive button'>GO TO COURSE";
+            var button_display = status === "active" ? "?status=active' class='ui teal button'>CONTINUE" : "?status=completed' class='ui positive button'>GO TO COURSE";
             status_content = "<div class='row'><div class='two wide column'><strong>Status:</strong></div><div class='fourteen wide column'>" + status_display + "</div></div>";
             button_content += button_display;
         } else {
-            button_content += "primary button'>ENROLL";
+            button_content += "?status=available' class='ui primary button'>ENROLL";
         }
         button_content += "</a></div></div>";
     }

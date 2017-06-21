@@ -18,7 +18,11 @@ function displayUserInfo(user_id) {
         contentType: "application/json"
     }).done(function (data) {
         //console.log(data);
-        $("#displayName").html(data[0].name).fadeIn();
+        $("#displayName .content").html("<em>Hi " + data[0].name + "</em>");
+        $('#displayName').transition({
+            animation: 'fade right',
+            duration: '400ms'
+        });
         $("#total_points").html(data[0].points + "pts").fadeIn();
         displayBadges(user_id, data[0].points);
     }).fail(function (xhr) {
@@ -28,22 +32,17 @@ function displayUserInfo(user_id) {
 
 function insertBadges(badge_arr) {
     if (badge_arr.length > 0) {
-        var insert_badge_query = {
-            "type": "insert",
-            "args": {
-                "table": "badge_status",
-                "objects": badge_arr
-            }
-        };
         $.ajax({
             method: "POST",
-            url: data_url + "/v1/query",
-            data: JSON.stringify(insert_badge_query),
+            url: rootURL + "/insert/badge",
+            data: JSON.stringify({
+                badge_array: badge_arr
+            }),
             contentType: "application/json"
         }).done(function (data) {
-            console.log(data);
+            //console.log(data);
         }).fail(function (xhr) {
-            console.log(xhr.responseText);
+            //console.log(xhr.responseText);
         });
     }
 }

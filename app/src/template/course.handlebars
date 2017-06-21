@@ -1,0 +1,104 @@
+<!-- Page Contents -->
+<div class="pusher">
+    <!-- Main Header -->
+    {{> navStudent }}
+    <!-- Display Messages -->
+    <div class="ui aligned basic segment" id="course_message_display">
+        <div class="ui centered grid">
+            <div class="twelve wide column">
+                {{#if courseStatus.available}}
+                <div class="ui info message">
+                    <i class="close icon"></i>
+                    <div><strong>You have enrolled in {{courseHeading}} course!</strong></div>
+                </div>
+                {{else if courseStatus.completed}}
+                <div class="ui positive message">
+                    <i class="close icon"></i>
+                    <div><strong>You have successfully completed {{courseHeading}} course!</strong></div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="ui vertical padded segment">
+        <div class="ui middle aligned stackable grid container" id="user_content">
+            <!-- Course Description -->
+            <div class="row">
+                <div class="sixteen wide column">
+                    <h2 class="ui header">
+                        <img class="ui medium image" src="/uploads/{{courseLogo}}">
+                        <div class="content">
+                            {{courseHeading}}
+                        </div>
+                    </h2>
+                    <hr class="main_hr" />
+                    <div class="ui grid">
+                        <div class="row">
+                            <div class="two wide column"><strong>About:</strong></div>
+                            <div class="fourteen wide column">{{courseDescription}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Course Content -->
+            <div class="row">
+                <div class="sixteen wide column">
+                    <div class="ui raised very padded text segment" id="course_content">
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="four wide column">
+                                    <div class="ui segment course_segment">
+                                        <div class="ui basic segment">
+                                            <button class="ui fluid grey button active">Syllabus</button>
+                                        </div>
+                                        <div class="ui vertical styled accordion menu" id="main_course_accordion">
+                                            <div class="ui active centered inline text loader">Loading Modules...</div>
+                                            <!--Displaying Modules -->
+                                        </div>
+                                        <!-- End of Accordion -->
+                                    </div>
+                                </div>
+                                <!-- Topic content -->
+                                <div class="twelve wide column">
+                                    <div class="ui segment course_segment" id="topic_content">
+                                        <h3 class="ui header">{{contentHeader}}</h3>
+                                        <hr class="main_hr" />
+                                        <div class="topic_detail">
+                                            <div id="syllabus">{{{content}}}</div>
+                                            <div id="module_content"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Feedback -->
+            <div class="row">
+                <div class="sixteen wide column">
+                    <h2 class="ui header">
+                        <div class="content">
+                            Feedback
+                        </div>
+                    </h2>
+                    <hr class="main_hr" />
+                    <div class="ui grid loader_content">
+                        <div class="row" id="user_feedback">
+                            <div class="ui active inline large text loader">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of feedback -->
+        </div>
+    </div>
+    <!-- Footer -->
+    {{> footer }}
+</div>
+<!-- Scripts -->
+{{> scriptsCommon }} {{> scriptsUserCommon }}
+<!-- Module Specific Scripts -->
+<script src="/js/course_home.js"></script>
+<script src="/js/course_main.js"></script>
