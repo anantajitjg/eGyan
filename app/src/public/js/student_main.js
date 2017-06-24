@@ -24,56 +24,16 @@ function displayUserInfo(user_id) {
             duration: '400ms'
         });
         $("#total_points").html(data[0].points + "pts").fadeIn();
-        displayBadges(user_id, data[0].points);
+        displayBadges();
     }).fail(function (xhr) {
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
     });
 }
-
-function insertBadges(badge_arr) {
-    if (badge_arr.length > 0) {
-        $.ajax({
-            method: "POST",
-            url: rootURL + "/insert/badge",
-            data: JSON.stringify({
-                badge_array: badge_arr
-            }),
-            contentType: "application/json"
-        }).done(function (data) {
-            //console.log(data);
-        }).fail(function (xhr) {
-            //console.log(xhr.responseText);
-        });
-    }
-}
-
-function displayBadges(user_id, points) {
-    var fetch_badge_query = {
-        "type": "select",
-        "args": {
-            "table": "badge_details",
-            "columns": [
-                "badge_id", "name", "points", "badge_logo",
-                {
-                    "name": "user_badge_status",
-                    "columns": ["display_status"],
-                    "where": {
-                        "user_id": user_id
-                    }
-                }
-            ],
-            "where": {
-                "points": {
-                    "$lte": points
-                }
-            },
-            "order_by": "-points"
-        }
-    };
+//For displaying Badges
+function displayBadges() {
     $.ajax({
-        method: "POST",
-        url: data_url + "/v1/query",
-        data: JSON.stringify(fetch_badge_query),
+        method: "GET",
+        url: rootURL + "/fetch/badge",
         contentType: "application/json"
     }).done(function (data) {
         //console.log(data);
@@ -81,14 +41,9 @@ function displayBadges(user_id, points) {
         if (total_badges > 0) {
             var badge_msg_content = "",
                 badge_content = "";
-            var user_badge_arr = [];
-            var badge_info = {};
             for (var i = 0; i < total_badges; i++) {
                 if (data[i].user_badge_status.length === 0) {
-                    badge_info.user_id = user_id;
-                    badge_info.badge_id = data[i].badge_id;
-                    user_badge_arr.push(badge_info);
-                    badge_msg_content += "<div class='ui positive message'><i class='close icon'></i><div class='header'>Congratulations!</div><p>You have received <b>" + data[i].name + "!</b></p></div>";
+                    badge_msg_content += "<div class='ui positive message'><i class='close icon'></i><div class='header'>Congratulations!</div><p>You have received <b>" + data[i].name + "!</b> " + data[i].badge_description + "</p></div>";
                 }
             }
             for (var i = total_badges - 1; i >= 0; i--) {
@@ -100,7 +55,6 @@ function displayBadges(user_id, points) {
             $(".message .close").on('click', function () {
                 $(this).closest('.message').transition('fade');
             });
-            insertBadges(user_badge_arr);
         }
     }).fail(function (xhr) {
         //console.log(xhr.responseText);
@@ -122,7 +76,7 @@ function displayCourses(user_id) {
                     "columns": ["enrolled"]
                 },
                 {
-                    "name": "course_act_rating",
+                    "name": "avg_course_rating",
                     "columns": ["count", "rating"]
                 },
                 {
@@ -140,7 +94,7 @@ function displayCourses(user_id) {
                     }
                 }
             ],
-            "order_by": ["-course_act_rating.rating", "-course_act_rating.count", "-enrolled_count.enrolled"]
+            "order_by": ["-avg_course_rating.rating", "-avg_course_rating.count", "-enrolled_count.enrolled"]
         }
     };
     $.ajax({

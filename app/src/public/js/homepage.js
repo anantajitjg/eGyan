@@ -42,11 +42,11 @@ $(function () {
                     "columns": ["enrolled"]
                 },
                 {
-                    "name": "course_act_rating",
+                    "name": "avg_course_rating",
                     "columns": ["count", "rating"]
                 }
             ],
-            "order_by": ["-course_act_rating.rating", "-course_act_rating.count", "-enrolled_count.enrolled"]
+            "order_by": ["-avg_course_rating.rating", "-avg_course_rating.count", "-enrolled_count.enrolled"]
         }
     };
     $.ajax({

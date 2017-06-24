@@ -1,7 +1,12 @@
 $(function () {
     var $login_form = $('#login_form');
     var $signup_form = $('#signup_form');
-
+    $login_form.submit(function (e) {
+        e.preventDefault();
+    });
+    $signup_form.submit(function (e) {
+        e.preventDefault();
+    });
     $login_form.form({
         fields: {
             email: {
@@ -26,6 +31,9 @@ $(function () {
                     prompt: 'Your password must be at least {ruleValue} characters'
                 }]
             }
+        },
+        onFailure: function () {
+            $(".login_modal").modal("refresh");
         },
         onInvalid: function () {
             if ($('.user_error').text() !== '') {
@@ -56,6 +64,7 @@ $(function () {
                 //console.log(xhr);
                 $("#login_btn").removeClass("disabled");
                 $login_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>Email or Password is wrong!</div><p>Please try again!</p></div>");
+                $(".login_modal").modal("refresh");
             }).always(function () {
                 $("#login_loader").css("display", "none");
             });
@@ -93,6 +102,9 @@ $(function () {
                 }]
             }
         },
+        onFailure: function () {
+            $(".signup_modal").modal("refresh");
+        },
         onInvalid: function () {
             if ($('.user_error').text() !== '') {
                 $('.user_error').css("display", "none");
@@ -114,6 +126,7 @@ $(function () {
                 contentType: "application/json"
             }).done(function (res) {
                 $signup_form.append("<div class='ui success message'><div class='header'>" + res + "</div><br />You can now <div class='ui tiny teal button login_trigger'>Log In</div> with your email!</div>");
+                $(".signup_modal").modal("refresh");
                 $('.login_trigger').click(function () {
                     triggerModal(".login_modal");
                 });
@@ -125,6 +138,8 @@ $(function () {
                     $signup_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>There were some errors!</div><p>" + result.message + "</p></div>");
                 } catch (e) {
                     $signup_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>Error occurred! Please try again after some time.</div></div>");
+                } finally {
+                    $(".signup_modal").modal("refresh");
                 }
             }).always(function () {
                 $("#signup_loader").css("display", "none");

@@ -50,9 +50,9 @@
                                 <div class="four wide column">
                                     <div class="ui segment course_segment">
                                         <div class="ui basic segment">
-                                            <button class="ui fluid grey button active">Syllabus</button>
+                                            <button class="ui fluid grey button active" id="syllabus_btn">Syllabus</button>
                                         </div>
-                                        <div class="ui vertical styled accordion menu" id="main_course_accordion">
+                                        <div class="ui vertical styled accordion" id="main_course_accordion">
                                             <div class="ui active centered inline text loader">Loading Modules...</div>
                                             <!--Displaying Modules -->
                                         </div>
@@ -62,11 +62,15 @@
                                 <!-- Topic content -->
                                 <div class="twelve wide column">
                                     <div class="ui segment course_segment" id="topic_content">
-                                        <h3 class="ui header">{{contentHeader}}</h3>
-                                        <hr class="main_hr" />
                                         <div class="topic_detail">
-                                            <div id="syllabus">{{{content}}}</div>
-                                            <div id="module_content"></div>
+                                            <div id="syllabus">
+                                                <h3 class="ui header">{{contentHeader}}</h3>
+                                                <hr class="main_hr" />
+                                                <div>{{{content}}}</div>
+                                            </div>
+                                            <div id="module_content">
+                                                <div class='ui active massive loader'></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +80,7 @@
                 </div>
             </div>
             <!-- Feedback -->
-            <div class="row">
+            <div class="row" id="feedback_section">
                 <div class="sixteen wide column">
                     <h2 class="ui header">
                         <div class="content">
@@ -96,6 +100,12 @@
     </div>
     <!-- Footer -->
     {{> footer }}
+</div>
+<!-- Modal -->
+<div class="ui basic modal" id="completed_modal">
+    <i class="close icon"></i>
+    <div class="ui icon header"></div>
+    <div class="content completed_content"></div>
 </div>
 <!-- Scripts -->
 {{> scriptsCommon }} {{> scriptsUserCommon }}
