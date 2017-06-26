@@ -95,7 +95,7 @@ function courseCompleted() {
         },
         contentType: "application/json"
     }).done(function (data) {
-        console.log(data);
+        //console.log(data);
         if (data.courseStatus === "completed") {
             $("#completed_modal .header").html("Excellent!");
             $("#completed_modal .completed_content").html("<strong>You have completed this course.</strong> Please provide your valuable feedback in the <div class='ui tiny teal button' id='feedback_section_btn'>Feedback</div> section!");
