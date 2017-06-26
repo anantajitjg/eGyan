@@ -136,6 +136,7 @@ app.get('/course/id/:id', function (req, res) {
   }
 });
 app.get('/logout', function (req, res) {
+  var userInfo = getBasicAuthInfo(req);
   if (userInfo.role === "user" || userInfo.role === "admin") {
     res.redirect('/student');
   } else {
