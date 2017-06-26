@@ -46,6 +46,9 @@ $(function () {
                     "columns": ["count", "rating"]
                 }
             ],
+            "where": {
+                "active": true
+            },
             "order_by": ["-avg_course_rating.rating", "-avg_course_rating.count", "-enrolled_count.enrolled"]
         }
     };

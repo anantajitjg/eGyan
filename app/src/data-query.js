@@ -18,8 +18,15 @@ var DataQuery = function () {
                     }
                 ],
                 "where": {
-                    "course_id": course_id
+                    "$and": [{
+                            "course_id": course_id
+                        },
+                        {
+                            "active": true
+                        }
+                    ]
                 }
+
             }
         };
         return query;

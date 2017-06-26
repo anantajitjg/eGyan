@@ -136,9 +136,13 @@ app.get('/course/id/:id', function (req, res) {
   }
 });
 app.get('/logout', function (req, res) {
-  res.render('logout', {
-    title: 'Logged Out!'
-  });
+  if (userInfo.role === "user" || userInfo.role === "admin") {
+    res.redirect('/student');
+  } else {
+    res.render('logout', {
+      title: 'Logged Out!'
+    });
+  }
 });
 
 app.post("/signup", function (req, res) {

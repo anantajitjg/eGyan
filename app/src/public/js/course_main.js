@@ -174,6 +174,11 @@ function getTopicContent(status) {
         var content = "<h3 class='ui header'>" + data[0].module_name + " - " + data[0].module_topics[0].topic_name + "</h3><div class='ui top right attached large teal label'>" + data[0].module_topics[0].topic_points + "pts</div><hr class='main_hr' />" + data[0].module_topics[0].topic_content + "<hr class='main_hr' /><div class='ui basic center aligned segment'>" + status_display + "</div>";
         $("#module_content").html(content).fadeIn();
         topicCompleted();
+        $('.course_video').embed({
+            parameters: {
+                rel: 0
+            }
+        });
     }).fail(function (xhr) {
         //console.log(xhr.responseText);
     }).always(function () {
@@ -199,6 +204,7 @@ function toggleContentDisplay() {
     })
     $("#syllabus_btn").click(function () {
         if (!$(this).hasClass("active")) {
+            $("#module_content").html("<div class='ui active massive loader'></div>").fadeIn();
             $(this).addClass("active");
             $(".topic_item").removeClass("active");
             $("#module_content").fadeOut(function () {
