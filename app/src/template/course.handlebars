@@ -22,10 +22,10 @@
     </div>
     <!-- Main Content -->
     <div class="ui vertical padded segment">
-        <div class="ui middle aligned stackable grid container" id="user_content">
+        <div class="ui centered grid" id="user_content">
             <!-- Course Description -->
             <div class="row">
-                <div class="sixteen wide column">
+                <div class="fourteen wide column">
                     <h2 class="ui header">
                         <img class="ui medium image" src="/uploads/{{courseLogo}}">
                         <div class="content">
@@ -43,12 +43,12 @@
             </div>
             <!-- Course Content -->
             <div class="row">
-                <div class="sixteen wide column">
-                    <div class="ui raised very padded text segment" id="course_content">
+                <div class="fifteen wide column">
+                    <div class="ui raised text segment" id="course_content">
                         <div class="ui grid">
                             <div class="row">
-                                <div class="four wide column">
-                                    <div class="ui segment course_segment">
+                                <div class="column" id="module_column">
+                                    <div class="ui segment course_segment" id="module_segment">
                                         <div class="ui basic segment">
                                             <button class="ui fluid grey button active" id="syllabus_btn">Syllabus</button>
                                         </div>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <!-- Topic content -->
-                                <div class="twelve wide column">
+                                <div class="column" id="topic_column">
                                     <div class="ui segment course_segment" id="topic_content">
                                         <div class="topic_detail">
                                             <div id="syllabus">
@@ -81,7 +81,7 @@
             </div>
             <!-- Feedback -->
             <div class="row" id="feedback_section">
-                <div class="sixteen wide column">
+                <div class="fourteen wide column">
                     <h2 class="ui header">
                         <div class="content">
                             Feedback

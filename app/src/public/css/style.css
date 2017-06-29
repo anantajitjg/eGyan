@@ -534,6 +534,14 @@
     margin: 3em 0em;
 }
 
+#module_column {
+    width: 21%;
+}
+
+#topic_column {
+    width: 79%;
+}
+
 #main_course_accordion {
     box-shadow: none;
     border: 0;
@@ -548,7 +556,11 @@
 }
 
 .course_segment {
-    min-height: 450px;
+    min-height: 550px;
+}
+
+#module_segment {
+    padding: 0;
 }
 
 #topic_content {
