@@ -8,8 +8,9 @@ $(function () {
         }).done(function (res) {
             console.log(res);
             //window.location = "/logout";
-        }).fail(function () {
-            window.location = "/";
+        }).fail(function (xhr) {
+            console.log(xhr);
+            //window.location = "/";
         });
     });
     //redirect counter
