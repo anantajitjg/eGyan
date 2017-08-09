@@ -2,11 +2,12 @@ $(function () {
     $('.logout_btn').click(function () {
         $(this).addClass("loading disabled");
         $.ajax({
-            method: "GET",
-            url: auth_url + "/user/logout"
+            method: "POST",
+            url: auth_url + "/user/logout",
+            contentType: "application/json"
         }).done(function (res) {
-            //console.log(res);
-            window.location = "/logout";
+            console.log(res);
+            //window.location = "/logout";
         }).fail(function (xhr) {
             console.log("Error logging you out!");
         });
