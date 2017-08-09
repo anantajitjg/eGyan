@@ -14,7 +14,7 @@ function getCourseStatusContent(id, status) {
         if (status === "active" || status === "completed") {
             var status_display = status === "active" ? "<em>Not yet Completed</em>" : "Completed";
             var button_display = status === "active" ? "?status=active' class='ui teal button'>CONTINUE" : "?status=completed' class='ui positive button'>GO TO COURSE";
-            status_content = "<div class='row'><div class='two wide column'><strong>Status:</strong></div><div class='fourteen wide column'>" + status_display + "</div></div>";
+            status_content = "<div class='row'><div class='two wide column'><strong>Status:</strong></div><div class='fourteen wide column'><div class='course_detail'>" + status_display + "</div></div></div>";
             button_content += button_display;
         } else {
             button_content += "?status=available' class='ui primary button'>ENROLL";
@@ -62,7 +62,7 @@ function displayAccordion(data, accordion_selector, course_status) {
             var user_rating_display = course_status === "completed" ? course_info.user_rating > 0 ? "<p class='user_rating'>Your Rating: " + course_info.user_rating + "</p>" : "" : "";
             var rounded_rating = Math.round(course_info.rating);
             //content for accordion
-            content += "<div class='item'><div class='title " + active_class + "'><i class='dropdown icon'></i> <img src='/uploads/" + course_info.logo + "' class='ui avatar image' /> <strong>" + course_info.name + "</strong><div class='star_wrapper'><div class='ui star rating' data-rating='" + rounded_rating + "' data-max-rating='5'></div></div><div class='clear_fix'></div></div><div class='content " + active_class + "'><div class='ui grid'><div class='row'><div class='two wide column'><strong>About:</strong></div><div class='fourteen wide column'>" + course_info.about + "</div></div><div class='row'><div class='two wide column'><strong>Total Enrolled:</strong></div><div class='fourteen wide column'>" + course_info.enrolled + "</div></div><div class='row'><div class='two wide column'><strong>Rating:</strong></div><div class='fourteen wide column'>" + rating_display + user_rating_display + "</div></div>" + getCourseStatusContent(course_info.id, course_status) + "</div></div></div>";
+            content += "<div class='item'><div class='title " + active_class + "'><i class='dropdown icon'></i> <img src='/uploads/" + course_info.logo + "' class='ui avatar image' /> <strong>" + course_info.name + "</strong><div class='star_wrapper'><div class='ui star rating' data-rating='" + rounded_rating + "' data-max-rating='5'></div></div><div class='clear_fix'></div></div><div class='content " + active_class + "'><div class='ui grid'><div class='row'><div class='two wide column'><strong>About:</strong></div><div class='fourteen wide column'><div class='course_detail'>" + course_info.about + "</div></div></div><div class='row'><div class='two wide column'><strong>Total Enrolled:</strong></div><div class='fourteen wide column'><div class='course_detail'>" + course_info.enrolled + "</div></div></div><div class='row'><div class='two wide column'><strong>Rating:</strong></div><div class='fourteen wide column'><div class='course_detail'>" + rating_display + user_rating_display + "</div></div></div>" + getCourseStatusContent(course_info.id, course_status) + "</div></div></div>";
         }
         accordion_selector.css("display", "none").html(content).fadeIn(function () {
             if (course_status === "active") {

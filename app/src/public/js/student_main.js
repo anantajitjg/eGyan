@@ -47,7 +47,7 @@ function displayBadges() {
                 }
             }
             for (var i = total_badges - 1; i >= 0; i--) {
-                var points_display = data[i].points > 0 ? "<div class='ui center aligned'><span class='ui grey label'>" + data[i].points + "pts</span></div>" : "";
+                var points_display = data[i].points > 0 ? "<div class='badge_points'><span class='ui grey label'>" + data[i].points + "pts</span></div>" : "";
                 badge_content += "<div class='card'><div class='image'><img class='ui image' src='/img/" + data[i].badge_logo + "'></div><div class='content'><div class='ui center aligned tiny header'>" + data[i].name + "</div>" + points_display + "</div></div>";
             }
             $("#user_badge_message").css("display", "none").html(badge_msg_content).fadeIn();

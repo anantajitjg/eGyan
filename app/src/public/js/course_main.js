@@ -190,7 +190,7 @@ function toggleContentDisplay() {
     $(".topic_item").click(function () {
         if (!$(this).hasClass("active")) {
             $("#module_content").html("<div class='ui active massive loader'></div>").fadeIn();
-            $("#syllabus_btn").removeClass("active");
+            $(".syllabus_btn").removeClass("active");
             $(".topic_item").removeClass("active");
             $(this).addClass("active");
             elemId = $(this).attr("id");
@@ -202,7 +202,7 @@ function toggleContentDisplay() {
             });
         }
     })
-    $("#syllabus_btn").click(function () {
+    $(".syllabus_btn").click(function () {
         if (!$(this).hasClass("active")) {
             $("#module_content").html("<div class='ui active massive loader'></div>").fadeIn();
             $(this).addClass("active");
@@ -272,17 +272,17 @@ function getModules() {
                 }
                 content += "</div></div></div>";
             }
-            $('#main_course_accordion').css("display", "none").html(content).fadeIn(function () {
+            $('.main_course_accordion').css("display", "none").html(content).fadeIn(function () {
                 $(this).accordion();
             });
             toggleContentDisplay();
         } else {
-            $('#main_course_accordion').css("display", "none").html("<div class='ui info message'><div><em>Currently Not Available!</em></div></div>").fadeIn();
+            $('.main_course_accordion').css("display", "none").html("<div class='ui info message'><div><em>Currently Not Available!</em></div></div>").fadeIn();
         }
     }).fail(function (xhr) {
         //console.log(xhr.responseText);
     }).always(function () {
-        $("#main_course_accordion .loader").hide();
+        $(".main_course_accordion .loader").hide();
     });
 }
 $(function () {

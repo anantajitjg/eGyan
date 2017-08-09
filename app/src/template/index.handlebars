@@ -1,7 +1,7 @@
 <!-- Top Fixed Hidden Menu -->
-<div class="ui large top fixed hidden menu">
+<div class="ui top fixed hidden menu">
     <div class="ui container">
-        <div class="item"><img src="/img/logo.png" alt="eGyan" class="ui" /></div>
+        <div class="item"><img class="ui image brand_image" src="/img/logo.png" alt="eGyan" /></div>
         <div class="right menu">
             <div class="item">
                 <a class="ui teal button login_trigger">Log in</a>
@@ -20,7 +20,7 @@
         <div class="ui container">
             <!-- Top Menu -->
             <div class="ui large secondary menu">
-                <div class="item"><img src="/img/logo.png" alt="eGyan" class="ui" /></div>
+                <div class="item"><img class="ui image brand_image" src="/img/logo.png" alt="eGyan" /></div>
                 <div class="right item">
                     <a class="ui teal button login_trigger">Log in</a>
                 </div>
@@ -37,7 +37,7 @@
     </div>
     <!-- Main Content -->
     <div class="ui vertical stripe segment">
-        <div class="ui middle aligned stackable grid container">
+        <div class="ui middle aligned stackable grid container" id="main_course_container">
             <!-- Course Display -->
             {{> courses courseType="Courses" courseTypeId="course_accordion" }}
         </div>
