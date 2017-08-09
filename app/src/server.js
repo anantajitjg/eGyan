@@ -7,7 +7,7 @@ var request = require('request');
 var DataQuery = require('./data-query');
 
 var app = express();
-app.set('env', 'development'); //development or production
+app.set('env', 'production'); //development or production
 
 app.set('views', path.join(__dirname, "template"));
 //view engine
@@ -42,11 +42,11 @@ var data_query_url = data_url + "/v1/query";
 
 function getBasicAuthInfo(req) {
   var info = {};
-  var dev_info = {
-    id: 50,
-    role: "user"
-  };
-  info = app.get('env') === 'development' ? dev_info : info;
+  // var dev_info = {
+  //   id: 50,
+  //   role: "user"
+  // };
+  // info = app.get('env') === 'development' ? dev_info : info;
   if (req.get('X-Hasura-Role')) {
     if (req.get('X-Hasura-User-Id')) {
       info.id = parseInt(req.get('X-Hasura-User-Id'));
@@ -72,13 +72,13 @@ function makePOSTRequest(data, callback) {
 //routes
 app.get('/', function (req, res) {
   var userInfo = getBasicAuthInfo(req);
-  // if (userInfo.role === "user" || userInfo.role === "admin") {
-  //   res.redirect('/student');
-  // } else {
+  if (userInfo.role === "user" || userInfo.role === "admin") {
+    res.redirect('/student');
+  } else {
     res.render('index', {
       title: "eGyan - Simple and Effective Elearning Platform for Everyone"
     });
-  // }
+  }
 });
 app.get('/student', function (req, res) {
   var userInfo = getBasicAuthInfo(req);
@@ -137,13 +137,13 @@ app.get('/course/id/:id', function (req, res) {
 });
 app.get('/logout', function (req, res) {
   var userInfo = getBasicAuthInfo(req);
-  // if (userInfo.role === "user" || userInfo.role === "admin") {
-  //   res.redirect('/student');
-  // } else {
+  if (userInfo.role === "user" || userInfo.role === "admin") {
+    res.redirect('/student');
+  } else {
     res.render('logout', {
       title: 'Logged Out!'
     });
-  // }
+  }
 });
 
 app.post("/signup", function (req, res) {

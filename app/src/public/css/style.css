@@ -85,9 +85,11 @@
 }
 
 #course_content {
+    margin: 0;
     padding: 0;
     border: 0;
     box-shadow: none;
+    background: #fff;
 }
 
 .course_content {
@@ -693,6 +695,10 @@
     padding: 0;
 }
 
+#module_sidebar {
+    display: none;
+}
+
 #topic_content {
     padding: 2.1em;
     overflow: scroll;
@@ -762,6 +768,9 @@ pre {
 }
 
 @media only screen and (max-width: 1200px) {
+    #module_sidebar {
+        display: block;
+    }
     #module_column {
         display: none;
     }

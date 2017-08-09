@@ -5,6 +5,6 @@ $(function () {
     });
     //Sidebar for Handheld Devices
     $("#module_sidebar").sidebar({
-        context: $('#course_content')
+        context: $('#course_content_segment')
     }).sidebar('attach events', '#course_module .item');
 });

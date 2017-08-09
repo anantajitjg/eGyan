@@ -1,5 +1,5 @@
 <!-- Page Contents -->
-<div class="pusher">
+<div>
     <!-- Main Header -->
     {{> navStudent }}
     <!-- Display Messages -->
@@ -47,33 +47,36 @@
             <div class="row">
                 <div class="fifteen wide column">
                     <div class="ui raised segment">
-                        <div class="ui raised text segment" id="course_content">
-                            <div class="ui grid">
-                                <div class="row">
-                                    <!-- Menu for Handheld Devices -->
-                                    <div class="ui top attached hidden menu" id="course_module">
-                                        <a class="item"><i class="sidebar large icon"></i></a>
-                                    </div>
-                                    <div class="ui segment course_segment sidebar" id="module_sidebar">
-                                        {{> modules }}
-                                    </div>
-                                    <!--End of Menu for Handheld Devices -->
-                                    <div class="column" id="module_column">
-                                        <div class="ui segment course_segment" id="module_segment">
-                                            {{> modules }}
+                        <div id="course_content_segment">
+                            <div class="ui segment course_segment sidebar" id="module_sidebar">
+                                {{> modules }}
+                            </div>
+                            <div class="ui raised text segment pusher" id="course_content">
+                                <div class="ui grid">
+                                    <div class="row">
+                                        <!-- Menu for Handheld Devices -->
+                                        <div class="ui top attached hidden menu" id="course_module">
+                                            <a class="item"><i class="sidebar large icon"></i></a>
                                         </div>
-                                    </div>
-                                    <!-- Topic content -->
-                                    <div class="column" id="topic_column">
-                                        <div class="ui segment course_segment" id="topic_content">
-                                            <div class="topic_detail">
-                                                <div id="syllabus">
-                                                    <h3 class="ui header">{{contentHeader}}</h3>
-                                                    <hr class="main_hr" />
-                                                    <div>{{{content}}}</div>
-                                                </div>
-                                                <div id="module_content">
-                                                    <div class='ui active massive loader'></div>
+
+                                        <!--End of Menu for Handheld Devices -->
+                                        <div class="column" id="module_column">
+                                            <div class="ui segment course_segment" id="module_segment">
+                                                {{> modules }}
+                                            </div>
+                                        </div>
+                                        <!-- Topic content -->
+                                        <div class="column" id="topic_column">
+                                            <div class="ui segment course_segment" id="topic_content">
+                                                <div class="topic_detail">
+                                                    <div id="syllabus">
+                                                        <h3 class="ui header">{{contentHeader}}</h3>
+                                                        <hr class="main_hr" />
+                                                        <div>{{{content}}}</div>
+                                                    </div>
+                                                    <div id="module_content">
+                                                        <div class='ui active massive loader'></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
