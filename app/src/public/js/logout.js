@@ -3,14 +3,12 @@ $(function () {
         $(this).addClass("loading disabled");
         $.ajax({
             method: "GET",
-            url: auth_url + "/user/logout",
-            contentType: "application/json"
+            url: auth_url + "/user/logout"
         }).done(function (res) {
-            console.log(res);
-            //window.location = "/logout";
+            //console.log(res);
+            window.location = "/logout";
         }).fail(function (xhr) {
-            console.log(xhr);
-            //window.location = "/";
+            console.log("Error logging you out!");
         });
     });
     //redirect counter
