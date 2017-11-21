@@ -1,0 +1,41 @@
+<div class="ui basic small modal signup_modal">
+    <i class="close icon"></i>
+    <div class="ui center aligned large header"><img src="/img/logo_mini.png" class="ui image">SIGN UP</div>
+    <div class="content">
+        <div class="ui middle aligned grid">
+            <div class="column">
+                <form class="ui form" id="signup_form">
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <label>Name</label>
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="name" placeholder="Full Name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Email</label>
+                            <div class="ui left icon input">
+                                <i class="mail icon"></i>
+                                <input type="text" name="email" placeholder="E-mail address">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="ui large teal submit flat button" id="signup_btn">SIGN UP</div>
+                        <div class="main_loader" id="signup_loader">
+                            <div class="ui active inline loader"></div>
+                            <div class="loader_text">Registering...</div>
+                        </div>
+                    </div>
+                    <div class="ui error message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

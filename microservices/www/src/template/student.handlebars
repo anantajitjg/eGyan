@@ -1,0 +1,58 @@
+<!-- Page Contents -->
+<div class="pusher">
+    <!-- Main Header -->
+    {{> navStudent }}
+    <!-- Display Messages -->
+    <div class="ui aligned basic segment" id="message_display">
+        <div class="ui centered grid loader_content">
+            <div class="twelve wide column">
+                <h2 class="ui header user_welcome" id="displayName">
+                    <i class="user icon"></i>
+                    <div class="content">
+                    </div>
+                </h2>
+                <div id="user_badge_message"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="ui vertical padded segment">
+        <div class="ui middle aligned stackable grid container" id="user_content">
+            <div class="row">
+                <div class="sixteen wide column">
+                    <h1 class="ui header inline_header">Your Badges</h1>
+                    <div class="ui icon tiny teal button tooltip_btn"><i class="large help icon"></i></div>
+                    <div class="ui inverted popup transition hidden help_popup">
+                        <p>Collect points to get more badges. The more courses you participate and complete you will get more
+                            badges.
+                        </p>
+                    </div>
+                    <hr class="main_hr" />
+                    <p class="basic_content"><strong>Total Points: </strong><span id="total_points"></span></p>
+                    <div class="ui eight doubling cards loader_content" id="badge">
+                        <div class="ui active centered inline large text loader">Loading Badges...</div>
+                        <!-- Display badges -->
+                    </div>
+                </div>
+            </div>
+            <!-- End of your Badges -->
+            <!-- Active Courses Display -->
+            {{> courses courseType="Active Courses" courseTypeId="active_course_accordion" }}
+            <!-- End of Active Courses -->
+            <!-- Completed Courses Display -->
+            {{> courses courseType="Completed Courses" courseTypeId="completed_course_accordion" }}
+            <!-- End of Completed courses -->
+            <!-- Available Courses Display -->
+            {{> courses courseType="Available Courses" courseTypeId="available_course_accordion" }}
+            <!-- End of Available courses -->
+        </div>
+    </div>
+    <!-- Footer -->
+    {{> footer }}
+</div>
+<!-- Scripts -->
+{{> scriptsCommon }} {{> scriptsUserCommon }}
+<!-- Module Specific Scripts -->
+<script src="/js/student_home.js"></script>
+<script src="/js/course_accordion.js"></script>
+<script src="/js/student_main.js"></script>

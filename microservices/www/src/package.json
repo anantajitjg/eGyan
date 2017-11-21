@@ -1,18 +1,16 @@
 {
-  "name": "hello-node-js",
+  "name": "egyan",
   "version": "1.0.0",
-  "description": "A simple node-js-express app",
+  "description": "eGyan - Simple and effective elearning platform for everyone",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Jaison",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "html": "^1.0.0",
-    "morgan": "^1.9.0",
-    "request": "^2.83.0",
-    "request-debug": "^0.2.0"
+    "body-parser": "^1.17.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "request": "^2.81.0"
   }
 }
