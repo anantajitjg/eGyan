@@ -1,0 +1,20 @@
+# Configuration for the postgres service
+#
+# Databse username and password are resolved from the secrets on the cluster
+#
+# Note that these values are read only on initilisation and modifying
+# them in `hasura secrets` will not change them on postgres
+#
+# Volume is the Kubernetes volume object where the database is stored
+
+database: hasuradb
+port: "5432"
+user:
+  secretKeyRef:
+    key: postgres.user
+    name: hasura-secrets
+password:
+  secretKeyRef:
+    key: postgres.password
+    name: hasura-secrets
+volume: {{ cluster.metadata.postgres.volume|json }}

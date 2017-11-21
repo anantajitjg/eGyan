@@ -1,0 +1,3 @@
+# Configuration for opening the the Gateway to the external world
+# Filled in from cluster metadata, contains Kubernete spec for the service object
+{{ cluster.metadata.gateway|json }}

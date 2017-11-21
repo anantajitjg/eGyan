@@ -1,0 +1,8 @@
+- args:
+    name: articles
+    table: author
+    using:
+      foreign_key_constraint_on:
+        column: author_id
+        table: article
+  type: create_array_relationship

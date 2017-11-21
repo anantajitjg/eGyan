@@ -1,0 +1,47 @@
+# Configuration for Hasura Notify service
+#
+# All options are configured to read from the secret called hasura-secrets
+# To enable a provider:
+# 1. Add the required secrets. Checkout hasura secrets --help for more information
+# 2. modify the default value to the provider that you want
+
+email:
+  # default can take values 'smtp' or 'sparkPost
+  default: null
+  providers:
+    smtp:
+      hostname: ""
+      password:
+        secretKeyRef:
+          key: notify.smtp.password
+          name: hasura-secrets
+      port: 465
+      username:
+        secretKeyRef:
+          key: notify.smtp.username
+          name: hasura-secrets
+    sparkPost:
+      apiKey:
+        secretKeyRef:
+          key: notify.sparkpost.key
+          name: hasura-secrets
+sms:
+  # default can take values 'msg91' or 'twilio'
+  default: null
+  providers:
+    msg91:
+      from: ""
+      authKey:
+        secretKeyRef:
+          key: notify.msg91.key
+          name: hasura-secrets
+    twilio:
+      from: ""
+      accountSid:
+        secretKeyRef:
+          key: notify.twilio.accountsid
+          name: hasura-secrets
+      authToken:
+        secretKeyRef:
+          key: notify.twilio.authtoken
+          name: hasura-secrets

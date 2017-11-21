@@ -1,0 +1,7 @@
+- args:
+    sql: CREATE TABLE "author"(id integer NOT NULL, name text NOT NULL, PRIMARY KEY
+      ("id") ); COMMENT ON TABLE "author" is 'This is a sample table created by Hasura';
+  type: run_sql
+- args:
+    name: author
+  type: add_existing_table_or_view

@@ -1,0 +1,171 @@
+# HTTP routes configured on the Gateway
+# -------------------------------------
+# This section lets you define the mapping between HTTP(S) routes on your domain(s) ond
+# the microservices running on your cluster
+#
+# The standard convention is to expose a microservice on a subdomain. The
+# default services (data, auth, filestore, notify etc.) on the platform are
+# exposed on their respective subdomains.
+#
+# Syntax
+# ------
+# The configuration syntax is fairly simple. It is a simple map, where the keys
+# are subdomains, while the values are the corsesponding subdomain configuration
+#
+# So, the structure of this file looks like this:
+#
+# subdomain1: subdomain1 configuration
+# subdomain2: subdomain2 configuration
+# .
+# .
+# subdomainn: subdomainn configuration
+#
+# > Subdomain's Configuration
+#   -----------------------
+#   Each subdomain's configuration is again a map. This time the keys are
+#   location (path) prefixes and the values are the corresponding location
+#   configuration. This lets you define the action that the gateway needs
+#   to take when the location is matched.
+#
+#   Expanding the above conf structure, we get
+#
+#   subdomain1:
+#     location1: location configuration
+#     location2: location configuration
+#     .
+#     .
+#     locationn: location configuration
+#
+#   A location/path is the part of the url after the domain. For example:
+#   In https://data.hello99.hasura-app.io/v1/query, /v1/query is the path
+#
+#   Example 1:
+#
+#   data:
+#     /:
+#       upstreamService:
+#         name: data
+#         namespace: {{ cluster.metadata.namespaces.hasura }}
+#       upstreamServicePath: /
+#       upstreamServicePort: 80
+#
+#   Here, we are configuring the gateway to send any request on data
+#   subdomain to the 'data' microservice in the hasura  namespace if
+#   the location has a prefix '/'. Since every location starts with
+#   '/', this means that any request arriving on the data subdomain
+#   is received by the data microservice.
+#
+#   Example 2:
+#
+#   api:
+#     /shipping:
+#       upstreamService:
+#         name: shipping
+#         namespace: {{ cluster.metadata.namespaces.user }}
+#       upstreamServicePath: /
+#       upstreamServicePort: 80
+#     /recommed:
+#       upstreamService:
+#         name: recommend
+#         namespace: {{ cluster.metadata.namespaces.user }}
+#       upstreamServicePath: /
+#       upstreamServicePort: 80
+#
+#   Here, anything on api.hello99.hasura-app.io/shipping/* -> shipping/
+#                     api.hello99.hasura-app.io/recommend/* -> recommend/
+#
+#   NOTE:
+#   1. Since the convention is to deploy a microservice on each domain, you'll rarely
+#      see a configuration which has a location prefix other than '/'
+#   2. If in case the location matches to more than one rule, the configuration
+#      related to the more specific rule is used
+#
+# > Location Configuration
+#   ----------------------
+#   The following options are available:
+#   key                  required            default
+#   ------------------------------------------------
+#   upstreamService      Yes                 -
+#   upstreamServicePort  Yes                 -
+#   upstreamServicePath  Yes                 -
+#   enableAuth           No                  true
+#   restrictToRoles      No                  null
+#   corsPolicy           No                  []
+#   enableWebsockets     No                  true
+#   locationDirectives   No                  ""
+#
+#   - upstreamService:
+#       The service to forward the request to
+#   - upstreamServicePort:
+#       The port on which the service is running
+#   - upstreamServicePath:
+#       The path to which the request has to be forwarded
+#   - enableAuth:
+#       This enables the session middlaware on the gateway to  intercept the
+#       request and resolve the user's session based on Authorization header
+#       or the Cookie
+#   - restrictToRoles:
+#       When the session middleware is enabled, restricts the matched URLs to
+#       be only accessed by users which have at least one of these roles. This
+#       is usually used to restrict access to admin only services like adminer etc.
+#   - corsPolicy:
+#       Can take the following 3 values:
+#       1. "allow_all": Cross origin requests from any domain are allowed
+#          Eg. corsPolicy: allow_all
+#       2. "upstream" : The upstream service should handle CORS requests.
+#          Eg. corsPolicy: upstream
+#       3. Array of allowed origins: This allows the listed origins along
+#          with all the subdomains on the current domain to make CORS requests.
+#   - enableWebsockets:
+#       Whether to allow websockets
+#   - locationDirectives:
+#       (Advanced) Additional nginx directives that need to go into the
+#       location block
+
+auth:
+  /:
+    upstreamService:
+      name: auth
+      namespace: {{ cluster.metadata.namespaces.hasura }}
+    upstreamServicePath: /
+    upstreamServicePort: 80
+    corsPolicy: allow_all
+data:
+  /:
+    upstreamService:
+      name: data
+      namespace: {{ cluster.metadata.namespaces.hasura }}
+    upstreamServicePath: /
+    upstreamServicePort: 80
+    corsPolicy: allow_all
+filestore:
+  /:
+    upstreamService:
+      name: filestore
+      namespace: {{ cluster.metadata.namespaces.hasura }}
+    upstreamServicePath: /
+    upstreamServicePort: 80
+    corsPolicy: allow_all
+    # To change the max file size that can be uploaded,
+    # change the value of client_max_body_size
+    locationDirectives: |
+      proxy_request_buffering off;
+      client_max_body_size 100M;
+notify:
+  /:
+    upstreamService:
+      name: notify
+      namespace: {{ cluster.metadata.namespaces.hasura }}
+    upstreamServicePath: /
+    upstreamServicePort: 80
+    corsPolicy: allow_all
+www:
+  /:
+    corsPolicy: allow_all
+    upstreamService:
+      name: www
+      namespace: '{{ cluster.metadata.namespaces.user }}'
+    upstreamServicePath: /
+    upstreamServicePort: 80
+
+# To see actual endpoints for these routes, use `$ hasura cluster status`

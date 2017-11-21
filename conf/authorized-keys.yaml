@@ -1,0 +1,12 @@
+# Defines where SSH keys are stored on the cluster.
+#
+# In this current configuration, it points to the `authorizedKeys`
+# key of configmap `ssh-authorized-keys` which is created
+# during project creation.
+#
+# All SSH keys added to the cluster (using `hasura ssh-key add`)
+# are stored in this ConfigMap
+
+configMapKeyRef:
+  name: ssh-authorized-keys
+  key: authorizedKeys

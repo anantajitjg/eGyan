@@ -1,0 +1,12 @@
+- args:
+    permission:
+      columns:
+      - id
+      - title
+      - content
+      - rating
+      - author_id
+      filter: {}
+    role: anonymous
+    table: article
+  type: create_select_permission
