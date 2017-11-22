@@ -164,6 +164,7 @@ app.post("/signup", function (req, res) {
       url: request_url,
       method: "POST",
       json: true,
+      headers: headers,
       body: user_dtl
     }, function (error, response) {
       if (error) {
