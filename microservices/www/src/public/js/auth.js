@@ -51,9 +51,8 @@ $(function () {
             var data = JSON.stringify(fields);
             var req_body = {
                 "provider": "username",
-                "data": {data}
+                "data": data
             };
-            console.log(data);
             $.ajax({
                 method: "POST",
                 url: auth_url + "/login",
