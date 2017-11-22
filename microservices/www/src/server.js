@@ -20,7 +20,6 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 var dataQuery = new DataQuery();
 
-var auth_url = "";
 var data_url = "";
 var headers = {
   'Content-Type': 'application/json'
@@ -28,17 +27,15 @@ var headers = {
 
 if (app.get('env') === "development") {
   headers.Authorization = 'Bearer ' + process.env.ADMIN_TOKEN;
-  auth_url = "https://auth.chaste17.hasura-app.io";
   data_url = "https://data.chaste17.hasura-app.io";
 } else {
-  auth_url = "http://auth.hasura";
   data_url = "http://data.hasura";
 }
 
 headers['X-Hasura-Role'] = 'admin';
 headers['X-Hasura-User-Id'] = 1;
 
-auth_url = auth_url + "/v1";
+var auth_url = "https://auth.chaste17.hasura-app.io/v1";
 var data_query_url = data_url + "/v1/query";
 
 function getBasicAuthInfo(req) {
