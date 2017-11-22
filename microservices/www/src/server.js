@@ -38,6 +38,7 @@ if (app.get('env') === "development") {
 headers['X-Hasura-Role'] = 'admin';
 headers['X-Hasura-User-Id'] = 1;
 
+auth_url = auth_url + "/v1";
 var data_query_url = data_url + "/v1/query";
 
 function getBasicAuthInfo(req) {
