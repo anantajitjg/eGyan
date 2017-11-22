@@ -149,23 +149,25 @@ app.get('/logout', function (req, res) {
 
 app.post("/signup", function (req, res) {
   var request_url = auth_url + '/signup';
-  var user_dtl = {};
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
   if (name.trim() === "" || email.trim() == "" || password.trim() === "") {
     res.status(400).send("Invalid input values!");
   } else {
-    user_dtl.username = email;
-    user_dtl.email = email;
-    user_dtl.password = password;
     //Making HTTP request
     request({
       url: request_url,
       method: "POST",
       json: true,
-      headers: headers,
-      body: user_dtl
+      body: {
+        "provider": "username",
+        "data": {
+          "username": email,
+          "email": email,
+          "password": password
+        }
+      }
     }, function (error, response) {
       if (error) {
         return res.status(500).send(error.toString());
