@@ -1,6 +1,6 @@
 var user_id = null,
     course_id = null,
-    elemId = null,
+    elemTopic = null,
     topicId = null,
     moduleId = null;
 //insert user rating
@@ -129,8 +129,8 @@ function topicCompleted() {
             if (data.topicStatus === "completed") {
                 $("#topic_completed_btn").fadeOut(function () {
                     $(this).removeClass("loading").addClass("green").html("<i class='checkmark icon'></i>COMPLETED").fadeIn();
-                    $("#" + elemId).data("status", 1).attr("data-status", "1");
-                    $("#" + elemId + " .content").append("&nbsp;<i class='green checkmark icon'></i>");
+                    elemTopic.data("status", 1).attr("data-status", "1");
+                    elemTopic.find(".content").append("&nbsp;<i class='green checkmark icon'></i>");
                 });
                 courseCompleted();
             }
@@ -193,7 +193,7 @@ function toggleContentDisplay() {
             $(".syllabus_btn").removeClass("active");
             $(".topic_item").removeClass("active");
             $(this).addClass("active");
-            elemId = $(this).attr("id");
+            elemTopic = $(this);
             topicId = $(this).data("topicid");
             moduleId = $(this).data("moduleid");
             var status = $(this).data("status");
@@ -268,7 +268,7 @@ function getModules() {
                         }
                     }
                     var status_display = topic_stat === 1 ? "&nbsp;<i class='green checkmark icon'></i>" : "";
-                    content += "<a class='item topic_item' id='topic_" + data[i].module_topics[j].topic_id + "' data-topicid='" + data[i].module_topics[j].topic_id + "' data-moduleid='" + data[i].module_id + "' data-status='" + topic_stat + "'><i class='arrow right icon'></i><div class='content'>" + data[i].module_topics[j].topic_name + status_display + "</div></a>";
+                    content += "<a class='item topic_item topic_" + data[i].module_topics[j].topic_id + "' data-topicid='" + data[i].module_topics[j].topic_id + "' data-moduleid='" + data[i].module_id + "' data-status='" + topic_stat + "'><i class='arrow right icon'></i><div class='content'>" + data[i].module_topics[j].topic_name + status_display + "</div></a>";
                 }
                 content += "</div></div></div>";
             }
@@ -291,7 +291,7 @@ $(function () {
     //get user info
     $.ajax({
         method: "GET",
-        url: auth_url + "/user/account/info",
+        url: auth_url + "/user/info",
         contentType: "application/json"
     }).done(function (res) {
         //console.log(res);

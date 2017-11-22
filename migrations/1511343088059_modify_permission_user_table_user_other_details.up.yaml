@@ -1,0 +1,10 @@
+- args:
+    permission:
+      columns:
+      - user_id
+      - name
+      - points
+      filter: {}
+    role: user
+    table: user_other_details
+  type: create_select_permission

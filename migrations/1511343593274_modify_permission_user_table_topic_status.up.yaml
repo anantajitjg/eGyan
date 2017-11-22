@@ -1,0 +1,11 @@
+- args:
+    permission:
+      columns:
+      - user_id
+      - topic_id
+      - topic_points
+      - module_id
+      filter: {}
+    role: user
+    table: topic_status
+  type: create_select_permission

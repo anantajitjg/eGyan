@@ -48,10 +48,9 @@ $(function () {
             $("#login_btn").addClass("disabled");
             $('form .message').html("");
             $('.user_error').css("display", "none");
-            var data = JSON.stringify(fields);
             var req_body = {
                 "provider": "username",
-                "data": data
+                "data": fields
             };
             $.ajax({
                 method: "POST",
@@ -59,7 +58,7 @@ $(function () {
                 xhrFields: {
                     withCredentials: true
                 },
-                data: req_body,
+                data: JSON.stringify(req_body),
                 contentType: "application/json"
             }).done(function (res) {
                 //console.log(res);

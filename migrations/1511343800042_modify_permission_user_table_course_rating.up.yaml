@@ -1,0 +1,21 @@
+- args:
+    role: user
+    table: course_rating
+  type: drop_select_permission
+- args:
+    permission:
+      check:
+        user_id: REQ_USER_ID
+    role: user
+    table: course_rating
+  type: create_insert_permission
+- args:
+    permission:
+      columns:
+      - user_id
+      - course_id
+      - rating
+      filter: {}
+    role: user
+    table: course_rating
+  type: create_select_permission

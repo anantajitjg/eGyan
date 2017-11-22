@@ -40,11 +40,11 @@ var data_query_url = data_url + "/v1/query";
 
 function getBasicAuthInfo(req) {
   var info = {};
-  // var dev_info = {
-  //   id: 50,
-  //   role: "user"
-  // };
-  // info = app.get('env') === 'development' ? dev_info : info;
+  var dev_info = {
+    id: 3,
+    role: "user"
+  };
+  info = app.get('env') === 'development' ? dev_info : info;
   if (req.get('X-Hasura-Role')) {
     if (req.get('X-Hasura-User-Id')) {
       info.id = parseInt(req.get('X-Hasura-User-Id'));

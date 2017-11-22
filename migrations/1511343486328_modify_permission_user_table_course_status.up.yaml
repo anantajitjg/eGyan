@@ -1,0 +1,10 @@
+- args:
+    permission:
+      columns:
+      - user_id
+      - course_id
+      - status
+      filter: {}
+    role: user
+    table: course_status
+  type: create_select_permission
