@@ -49,16 +49,18 @@ $(function () {
             $('form .message').html("");
             $('.user_error').css("display", "none");
             var data = JSON.stringify(fields);
+            var req_body = {
+                "provider": "username",
+                "data": {data}
+            };
+            console.log(req_body);
             $.ajax({
                 method: "POST",
                 url: auth_url + "/login",
                 xhrFields: {
                     withCredentials: true
                 },
-                data: {
-                    "provider": "username",
-                    "data": data
-                },
+                data: req_body,
                 contentType: "application/json"
             }).done(function (res) {
                 //console.log(res);
