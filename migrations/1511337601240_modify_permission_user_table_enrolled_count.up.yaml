@@ -1,0 +1,9 @@
+- args:
+    permission:
+      columns:
+      - course_id
+      - enrolled
+      filter: {}
+    role: user
+    table: enrolled_count
+  type: create_select_permission

@@ -1,0 +1,8 @@
+- args:
+    name: user_topic_status
+    table: module_details
+    using:
+      foreign_key_constraint_on:
+        column: module_id
+        table: topic_status
+  type: create_array_relationship

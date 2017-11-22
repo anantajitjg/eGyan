@@ -1,0 +1,6 @@
+- args:
+    name: user_badge_status
+    table: badge_status
+    using:
+      foreign_key_constraint_on: badge_id
+  type: create_object_relationship

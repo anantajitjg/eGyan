@@ -1,0 +1,10 @@
+- args:
+    permission:
+      columns:
+      - course_id
+      - count
+      - rating
+      filter: {}
+    role: anonymous
+    table: avg_course_rating
+  type: create_select_permission

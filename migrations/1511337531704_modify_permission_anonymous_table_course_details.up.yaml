@@ -1,0 +1,13 @@
+- args:
+    permission:
+      columns:
+      - course_id
+      - name
+      - about
+      - syllabus
+      - course_logo
+      - active
+      filter: {}
+    role: anonymous
+    table: course_details
+  type: create_select_permission

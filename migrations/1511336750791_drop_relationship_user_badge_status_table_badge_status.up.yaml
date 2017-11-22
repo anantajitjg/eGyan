@@ -1,0 +1,4 @@
+- args:
+    relationship: user_badge_status
+    table: badge_status
+  type: drop_relationship

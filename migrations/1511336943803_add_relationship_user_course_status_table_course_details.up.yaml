@@ -1,0 +1,8 @@
+- args:
+    name: user_course_status
+    table: course_details
+    using:
+      foreign_key_constraint_on:
+        column: course_id
+        table: course_status
+  type: create_array_relationship
