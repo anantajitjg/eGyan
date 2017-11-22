@@ -53,7 +53,7 @@ $(function () {
                 "provider": "username",
                 "data": {data}
             };
-            console.log(req_body);
+            console.log(data);
             $.ajax({
                 method: "POST",
                 url: auth_url + "/login",
