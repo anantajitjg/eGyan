@@ -10,7 +10,7 @@ $(function () {
     $login_form.form({
         fields: {
             email: {
-                identifier: 'email',
+                identifier: 'username',
                 rules: [{
                         type: 'empty',
                         prompt: 'Please enter your e-mail'
@@ -55,7 +55,10 @@ $(function () {
                 xhrFields: {
                     withCredentials: true
                 },
-                data: data,
+                data: {
+                    "provider": "username",
+                    "data": data
+                },
                 contentType: "application/json"
             }).done(function (res) {
                 //console.log(res);
