@@ -1,0 +1,36 @@
+- args:
+    name: badge_details
+  type: add_existing_table_or_view
+- args:
+    name: badge_status
+  type: add_existing_table_or_view
+- args:
+    name: course_rating
+  type: add_existing_table_or_view
+- args:
+    name: course_status
+  type: add_existing_table_or_view
+- args:
+    name: course_details
+  type: add_existing_table_or_view
+- args:
+    name: module_details
+  type: add_existing_table_or_view
+- args:
+    name: topic_details
+  type: add_existing_table_or_view
+- args:
+    name: user_other_details
+  type: add_existing_table_or_view
+- args:
+    name: topic_status
+  type: add_existing_table_or_view
+- args:
+    name: avg_course_rating
+  type: add_existing_table_or_view
+- args:
+    name: enrolled_count
+  type: add_existing_table_or_view
+- args:
+    name: total_users
+  type: add_existing_table_or_view

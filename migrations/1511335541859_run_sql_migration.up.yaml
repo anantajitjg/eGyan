@@ -1,0 +1,207 @@
+- args:
+    sql: |+
+      CREATE TABLE course_rating (
+          user_id integer NOT NULL,
+          course_id integer NOT NULL,
+          rating integer NOT NULL,
+          CONSTRAINT rating_check CHECK (((rating >= 1) AND (rating <= 5)))
+      );
+
+
+      CREATE TABLE badge_details (
+          badge_id integer NOT NULL,
+          name text,
+          points integer,
+          badge_logo text,
+          badge_description text
+      );
+
+
+      CREATE SEQUENCE badge_details_badge_id_seq
+          START WITH 1
+          INCREMENT BY 1
+          NO MINVALUE
+          NO MAXVALUE
+          CACHE 1;
+
+
+      ALTER SEQUENCE badge_details_badge_id_seq OWNED BY badge_details.badge_id;
+
+      CREATE TABLE badge_status (
+          user_id integer NOT NULL,
+          badge_id integer NOT NULL,
+          display_status boolean DEFAULT true
+      );
+
+
+      CREATE TABLE course_details (
+          course_id integer NOT NULL,
+          name text,
+          about text,
+          syllabus text,
+          course_logo text,
+          active boolean DEFAULT false
+      );
+
+
+      CREATE SEQUENCE course_details_course_id_seq
+          START WITH 1
+          INCREMENT BY 1
+          NO MINVALUE
+          NO MAXVALUE
+          CACHE 1;
+
+
+      ALTER SEQUENCE course_details_course_id_seq OWNED BY course_details.course_id;
+
+
+      CREATE TABLE course_status (
+          user_id integer NOT NULL,
+          course_id integer NOT NULL,
+          status boolean DEFAULT false
+      );
+
+      CREATE TABLE module_details (
+          module_id integer NOT NULL,
+          module_name text,
+          course_id integer
+      );
+
+
+      CREATE SEQUENCE module_details_module_id_seq
+          START WITH 1
+          INCREMENT BY 1
+          NO MINVALUE
+          NO MAXVALUE
+          CACHE 1;
+
+
+      ALTER SEQUENCE module_details_module_id_seq OWNED BY module_details.module_id;
+
+
+      CREATE TABLE topic_details (
+          topic_id integer NOT NULL,
+          topic_name text,
+          topic_content text,
+          topic_points integer,
+          module_id integer
+      );
+
+      CREATE SEQUENCE topic_details_topic_id_seq
+          START WITH 1
+          INCREMENT BY 1
+          NO MINVALUE
+          NO MAXVALUE
+          CACHE 1;
+
+      ALTER SEQUENCE topic_details_topic_id_seq OWNED BY topic_details.topic_id;
+
+
+      CREATE TABLE topic_status (
+          user_id integer NOT NULL,
+          topic_id integer NOT NULL,
+          topic_points integer,
+          module_id integer
+      );
+
+
+      CREATE TABLE user_other_details (
+          user_id integer NOT NULL,
+          name text,
+          points integer DEFAULT 0
+      );
+
+
+      ALTER TABLE ONLY badge_details ALTER COLUMN badge_id SET DEFAULT nextval('badge_details_badge_id_seq'::regclass);
+
+
+      ALTER TABLE ONLY course_details ALTER COLUMN course_id SET DEFAULT nextval('course_details_course_id_seq'::regclass);
+
+
+      ALTER TABLE ONLY module_details ALTER COLUMN module_id SET DEFAULT nextval('module_details_module_id_seq'::regclass);
+
+
+      ALTER TABLE ONLY topic_details ALTER COLUMN topic_id SET DEFAULT nextval('topic_details_topic_id_seq'::regclass);
+
+
+      ALTER TABLE ONLY badge_details
+          ADD CONSTRAINT badge_details_pkey PRIMARY KEY (badge_id);
+
+      ALTER TABLE ONLY badge_details
+          ADD CONSTRAINT badge_details_points_key UNIQUE (points);
+
+      ALTER TABLE ONLY badge_status
+          ADD CONSTRAINT badge_status_pkey PRIMARY KEY (user_id, badge_id);
+
+      ALTER TABLE ONLY course_details
+          ADD CONSTRAINT course_details_pkey PRIMARY KEY (course_id);
+
+      ALTER TABLE ONLY course_rating
+          ADD CONSTRAINT course_rating_pkey PRIMARY KEY (user_id, course_id);
+
+      ALTER TABLE ONLY course_status
+          ADD CONSTRAINT course_status_pkey PRIMARY KEY (user_id, course_id);
+
+      ALTER TABLE ONLY module_details
+          ADD CONSTRAINT module_details_pkey PRIMARY KEY (module_id);
+
+      ALTER TABLE ONLY topic_details
+          ADD CONSTRAINT topic_details_pkey PRIMARY KEY (topic_id);
+
+      ALTER TABLE ONLY topic_status
+          ADD CONSTRAINT topic_status_pkey PRIMARY KEY (user_id, topic_id);
+
+      ALTER TABLE ONLY user_other_details
+          ADD CONSTRAINT user_other_details_pkey PRIMARY KEY (user_id);
+
+      ALTER TABLE ONLY badge_status
+          ADD CONSTRAINT badge_status_badge_id_fkey FOREIGN KEY (badge_id) REFERENCES badge_details(badge_id);
+
+      ALTER TABLE ONLY badge_status
+          ADD CONSTRAINT badge_status_user_id_fkey FOREIGN KEY (user_id) REFERENCES user_other_details(user_id);
+
+      ALTER TABLE ONLY course_rating
+          ADD CONSTRAINT course_rating_course_id_fkey FOREIGN KEY (course_id) REFERENCES course_details(course_id);
+
+      ALTER TABLE ONLY course_rating
+          ADD CONSTRAINT course_rating_course_id_fkey1 FOREIGN KEY (course_id, user_id) REFERENCES course_status(course_id, user_id);
+
+      ALTER TABLE ONLY course_rating
+          ADD CONSTRAINT course_rating_user_id_fkey FOREIGN KEY (user_id) REFERENCES user_other_details(user_id);
+
+      ALTER TABLE ONLY course_status
+          ADD CONSTRAINT course_status_course_id_fkey FOREIGN KEY (course_id) REFERENCES course_details(course_id);
+
+      ALTER TABLE ONLY course_status
+          ADD CONSTRAINT course_status_user_id_fkey FOREIGN KEY (user_id) REFERENCES user_other_details(user_id);
+
+      ALTER TABLE ONLY module_details
+          ADD CONSTRAINT module_details_course_id_fkey FOREIGN KEY (course_id) REFERENCES course_details(course_id);
+
+      ALTER TABLE ONLY topic_details
+          ADD CONSTRAINT topic_details_module_id_fkey FOREIGN KEY (module_id) REFERENCES module_details(module_id);
+
+      ALTER TABLE ONLY topic_status
+          ADD CONSTRAINT topic_status_module_id_fkey FOREIGN KEY (module_id) REFERENCES module_details(module_id);
+
+      ALTER TABLE ONLY topic_status
+          ADD CONSTRAINT topic_status_topic_id_fkey FOREIGN KEY (topic_id) REFERENCES topic_details(topic_id);
+
+      ALTER TABLE ONLY topic_status
+          ADD CONSTRAINT topic_status_user_id_fkey FOREIGN KEY (user_id) REFERENCES user_other_details(user_id);
+
+      CREATE VIEW avg_course_rating AS
+         SELECT course_id, COUNT(course_id), ROUND(AVG(rating),1) AS rating
+         FROM course_rating
+         GROUP BY course_id;
+
+      CREATE VIEW enrolled_count AS
+         SELECT course_id, COUNT(user_id) AS enrolled
+         FROM course_status
+         GROUP BY course_id;
+
+      CREATE VIEW total_users AS
+         SELECT COUNT(user_id) AS total
+         FROM user_other_details;
+
+  type: run_sql
