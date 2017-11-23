@@ -1,6 +1,8 @@
 # eGyan
 eGyan is a web application built with Node.js (Express) and Hasura (https://hasura.io/) Platform. It is a simple and effective eLearning app for everyone.
 
+[![eGyan Video](https://user-images.githubusercontent.com/22009263/33184648-a2dc2026-d0a3-11e7-880e-ae602fcef1b2.png)](https://youtu.be/5VeZMmC7Idc)
+
 ## Setup
 
 * [Setup the Hasura CLI](#setup-the-hasura-cli)
@@ -46,14 +48,10 @@ The project (a.k.a. project directory) has a particular directory structure and 
 │   ├── routes.yaml
 │   └── session-store.yaml
 ├── migrations
-│   ├── 1504788327_create_table_user.down.yaml
-│   ├── 1504788327_create_table_user.down.sql
-│   ├── 1504788327_create_table_user.up.yaml
-│   └── 1504788327_create_table_user.up.sql
 └── microservices
     ├── adminer
     │   └── k8s.yaml
-    └── flask
+    └── www
         ├── src/
         ├── k8s.yaml
         └── Dockerfile
@@ -87,7 +85,7 @@ $ git add .
 $ git commit -m "eGyan initial commit"
 $ git push hasura master
 ```
-Once this project is deployed on to a hasura cluster, you will have eGyan app running at *`https://www.<cluster-name>.hasura-app.io`*
+Once this project is deployed on to a hasura cluster, you will have eGyan app running at **`https://www.<cluster-name>.hasura-app.io`**
 
 ## Accessing Console
 
