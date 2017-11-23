@@ -87,7 +87,7 @@ $ git add .
 $ git commit -m "eGyan initial commit"
 $ git push hasura master
 ```
-Once this project is deployed on to a hasura cluster, you will have eGyan app running at *https://www.<cluster-name>.hasura-app.io*
+Once this project is deployed on to a hasura cluster, you will have eGyan app running at *`https://www.<cluster-name>.hasura-app.io`*
 
 ## Accessing Console
 
