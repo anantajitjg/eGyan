@@ -3,5 +3,5 @@
     configmap: controller-conf
     namespace: hasura
   data: null
-  kubeContext: chaste17
-  name: chaste17
+  kubeContext: flashiness71
+  name: flashiness71
