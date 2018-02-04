@@ -164,6 +164,7 @@ app.post("/signup", function (req, res) {
     request({
       url: request_url,
       method: "POST",
+      headers: headers,
       json: true,
       body: {
         "provider": "username",
