@@ -52,6 +52,12 @@ $(function () {
             "order_by": ["-avg_course_rating.rating", "-avg_course_rating.count", "-enrolled_count.enrolled"]
         }
     };
+    $.ajaxSetup({
+        crossDomain: true,
+        xhrFields: {
+            withCredentials: true
+        }
+    });
     $.ajax({
         method: "POST",
         url: data_query_url,
