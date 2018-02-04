@@ -47,7 +47,7 @@ let data_query_url = data_url + "/v1/query";
 //===============================================================
 function getBasicAuthInfo(req) {
   let info = {};
-  let dev_info = { id: 3, role: "user" };
+  let dev_info = { id: 7, role: "user" }; // for development only
   info = app.get('env') === 'development' ? dev_info : info;
   if (req.get('X-Hasura-Role')) {
     if (req.get('X-Hasura-User-Id')) {

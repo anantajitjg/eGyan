@@ -1,0 +1,8 @@
+- args:
+    permission:
+      check:
+        user_id:
+          $eq: X-HASURA-USER-ID
+    role: anonymous
+    table: user_other_details
+  type: create_insert_permission

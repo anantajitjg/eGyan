@@ -55,6 +55,8 @@ function displayBadges() {
             $(".message .close").on('click', function () {
                 $(this).closest('.message').transition('fade');
             });
+        } else {
+            $("#badge").css("display", "none").removeClass("loader_content").html("<div class='ui info message'><div><em>No badges to display!</em></div></div>").fadeIn();
         }
     }).fail(function (xhr) {
         //console.log(xhr.responseText);
