@@ -10,7 +10,7 @@ let DataQuery = require('./data-query');
 let app = express();
 let dataQuery = new DataQuery();
 app.use(bodyParser.json());
-app.set('env', 'development'); //development or production
+app.set('env', 'production'); //development or production
 
 // view
 //===============================================================
