@@ -3,7 +3,7 @@ $(function () {
         $(this).addClass("loading disabled");
         $.ajax({
             method: "POST",
-            url: auth_url + "/user/logout",
+            url: auth_query_url + "/user/logout",
             contentType: "application/json"
         }).done(function (res) {
             //console.log(res);

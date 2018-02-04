@@ -18,7 +18,7 @@ function insertRating(rating) {
     };
     $.ajax({
         method: "POST",
-        url: data_url + "/v1/query",
+        url: data_query_url,
         data: JSON.stringify(insert_rating_query),
         contentType: "application/json"
     }).done(function (data) {
@@ -55,7 +55,7 @@ function fetchUserRating() {
     };
     $.ajax({
         method: "POST",
-        url: data_url + "/v1/query",
+        url: data_query_url,
         data: JSON.stringify(fetch_rating_query),
         contentType: "application/json"
     }).done(function (data) {
@@ -165,7 +165,7 @@ function getTopicContent(status) {
     };
     $.ajax({
         method: "POST",
-        url: data_url + "/v1/query",
+        url: data_query_url,
         data: JSON.stringify(fetch_topic_details_query),
         contentType: "application/json"
     }).done(function (data) {
@@ -247,7 +247,7 @@ function getModules() {
     };
     $.ajax({
         method: "POST",
-        url: data_url + "/v1/query",
+        url: data_query_url,
         data: JSON.stringify(fecth_modules_query),
         contentType: "application/json"
     }).done(function (data) {
@@ -291,7 +291,7 @@ $(function () {
     //get user info
     $.ajax({
         method: "GET",
-        url: auth_url + "/user/info",
+        url: auth_query_url + "/user/info",
         contentType: "application/json"
     }).done(function (res) {
         //console.log(res);

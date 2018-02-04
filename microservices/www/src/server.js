@@ -1,49 +1,53 @@
-var express = require('express');
-var path = require('path');
-var hbs = require('express-handlebars');
-var bodyParser = require('body-parser');
-var request = require('request');
-//custom modules for egyan app
-var DataQuery = require('./data-query');
+let hbs = require('express-handlebars'),
+    path = require('path'),
+    express = require('express'),
+    request = require('request'),
+    bodyParser = require('body-parser');
 
-var app = express();
-app.set('env', 'production'); //development or production
+// custom modules
+let DataQuery = require('./data-query');
 
+let app = express();
+let dataQuery = new DataQuery();
+app.use(bodyParser.json());
+app.set('env', 'development'); //development or production
+
+// view
+//===============================================================
 app.set('views', path.join(__dirname, "template"));
-//view engine
 app.engine('handlebars', hbs({
   defaultLayout: 'main',
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials')
 }));
 app.set('view engine', 'handlebars');
-app.use(bodyParser.json());
-var dataQuery = new DataQuery();
 
-var data_url = "";
-var headers = {
+// config
+//===============================================================
+let data_url = "";
+let auth_url = "";
+let headers = {
   'Content-Type': 'application/json'
 };
-
 if (app.get('env') === "development") {
+  const cluster_name = process.env.CLUSTER_NAME;
   headers.Authorization = 'Bearer ' + process.env.ADMIN_TOKEN;
-  data_url = "https://data.chaste17.hasura-app.io";
+  auth_url = `https://auth.${cluster_name}.hasura-app.io`;
+  data_url = `https://data.${cluster_name}.hasura-app.io`;
 } else {
+  auth_url = "http://auth.hasura";
   data_url = "http://data.hasura";
 }
-
 headers['X-Hasura-Role'] = 'admin';
 headers['X-Hasura-User-Id'] = 1;
+let auth_query_url = auth_url + "/v1";
+let data_query_url = data_url + "/v1/query";
 
-var auth_url = "https://auth.chaste17.hasura-app.io/v1";
-var data_query_url = data_url + "/v1/query";
-
+// custom functions
+//===============================================================
 function getBasicAuthInfo(req) {
-  var info = {};
-  var dev_info = {
-    id: 3,
-    role: "user"
-  };
+  let info = {};
+  let dev_info = { id: 3, role: "user" };
   info = app.get('env') === 'development' ? dev_info : info;
   if (req.get('X-Hasura-Role')) {
     if (req.get('X-Hasura-User-Id')) {
@@ -67,10 +71,11 @@ function makePOSTRequest(data, callback) {
   }, callback);
 }
 
-//routes
+// routes
+//===============================================================
 app.get('/', function (req, res) {
-  var userInfo = getBasicAuthInfo(req);
-  if (userInfo.role === "user" || userInfo.role === "admin") {
+  let userInfo = getBasicAuthInfo(req);
+  if (app.get('env') === "production" && (userInfo.role === "user" || userInfo.role === "admin")) {
     res.redirect('/student');
   } else {
     res.render('index', {
@@ -78,8 +83,9 @@ app.get('/', function (req, res) {
     });
   }
 });
+
 app.get('/student', function (req, res) {
-  var userInfo = getBasicAuthInfo(req);
+  let userInfo = getBasicAuthInfo(req);
   if (userInfo.role === "user" || userInfo.role === "admin") {
     res.render('student', {
       title: "eGyan - Student Home"
@@ -88,18 +94,19 @@ app.get('/student', function (req, res) {
     res.redirect('/');
   }
 });
+
 app.get('/course/id/:id', function (req, res) {
-  var userInfo = getBasicAuthInfo(req);
+  let userInfo = getBasicAuthInfo(req);
   if (userInfo.role === "user" || userInfo.role === "admin") {
-    var course_id = parseInt(req.params.id) ? parseInt(req.params.id) : null;
-    var status = req.query.status ? req.query.status : "";
+    let course_id = parseInt(req.params.id) ? parseInt(req.params.id) : null;
+    let status = req.query.status ? req.query.status : "";
     if (course_id !== null && (status === "active" || status === "completed" || status === "available")) {
       //fetch course details
       makePOSTRequest(dataQuery.fetchCourseDetails(userInfo.id, course_id), function (error, response) {
         if (response.statusCode == 200) {
           if (response.body.length > 0) {
-            var courseStatusInfo = {};
-            var statusCheck = response.body[0].user_course_status.length;
+            let courseStatusInfo = {};
+            let statusCheck = response.body[0].user_course_status.length;
             courseStatusInfo.available = statusCheck === 0 ? true : false;
             courseStatusInfo.completed = statusCheck > 0 ? response.body[0].user_course_status[0].status : false;
             if (statusCheck === 0) {
@@ -133,9 +140,10 @@ app.get('/course/id/:id', function (req, res) {
     res.redirect('/');
   }
 });
+
 app.get('/logout', function (req, res) {
-  var userInfo = getBasicAuthInfo(req);
-  if (userInfo.role === "user" || userInfo.role === "admin") {
+  let userInfo = getBasicAuthInfo(req);
+  if (app.get('env') === "production" && (userInfo.role === "user" || userInfo.role === "admin")) {
     res.redirect('/student');
   } else {
     res.render('logout', {
@@ -145,10 +153,10 @@ app.get('/logout', function (req, res) {
 });
 
 app.post("/signup", function (req, res) {
-  var request_url = auth_url + '/signup';
-  var name = req.body.name;
-  var email = req.body.email;
-  var password = req.body.password;
+  let request_url = auth_query_url + '/signup';
+  let name = req.body.name;
+  let email = req.body.email;
+  let password = req.body.password;
   if (name.trim() === "" || email.trim() == "" || password.trim() === "") {
     res.status(400).send("Invalid input values!");
   } else {
@@ -169,7 +177,7 @@ app.post("/signup", function (req, res) {
         return res.status(500).send(error.toString());
       }
       if (response.statusCode == 200) {
-        var user_id = response.body.hasura_id;
+        let user_id = response.body.hasura_id;
         //now, insert the name
         makePOSTRequest(dataQuery.insertFullName(user_id, name), function (error, response) {
           if (response.body.affected_rows >= 1) {
@@ -192,23 +200,24 @@ app.post("/signup", function (req, res) {
     });
   }
 });
+
 //For fetching badge details
 app.get('/fetch/badge', function (req, res) {
-  var userInfo = getBasicAuthInfo(req);
+  let userInfo = getBasicAuthInfo(req);
   if (userInfo.role === "user" || userInfo.role === "admin") {
     //first fetch points
     makePOSTRequest(dataQuery.fetchUserPoints(userInfo.id), function (error, response) {
       if (response.statusCode == 200) {
-        var points = response.body[0].points;
+        let points = response.body[0].points;
         //now, fetch badge details
         makePOSTRequest(dataQuery.fetchBadgeDetails(userInfo.id, points), function (error, response) {
           if (response.statusCode == 200) {
-            var total_badges = response.body.length;
+            let total_badges = response.body.length;
             if (total_badges > 0) {
-              var user_badge_arr = [];
-              for (var i = 0; i < total_badges; i++) {
+              let user_badge_arr = [];
+              for (let i = 0; i < total_badges; i++) {
                 if (response.body[i].user_badge_status.length === 0) {
-                  var badge_info = {};
+                  let badge_info = {};
                   badge_info.user_id = userInfo.id;
                   badge_info.badge_id = response.body[i].badge_id;
                   user_badge_arr.push(badge_info);
@@ -233,17 +242,18 @@ app.get('/fetch/badge', function (req, res) {
     res.status("403").send("Not allowed!");
   }
 });
+
 //For completing a topic and updating points
 app.post('/topic/complete', function (req, res) {
-  var userInfo = getBasicAuthInfo(req);
+  let userInfo = getBasicAuthInfo(req);
   if (userInfo.role === "user" || userInfo.role === "admin") {
-    var topic_id = req.body.topic_id;
-    var module_id = req.body.module_id;
+    let topic_id = req.body.topic_id;
+    let module_id = req.body.module_id;
     //first fetch topic points
     makePOSTRequest(dataQuery.fetchTopicPoints(topic_id), function (error, response) {
       if (response.statusCode == 200) {
         if (response.body.length > 0) {
-          var topic_points = response.body[0].topic_points;
+          let topic_points = response.body[0].topic_points;
           //now insert topic status
           makePOSTRequest(dataQuery.insertTopicStatus(userInfo.id, topic_id, topic_points, module_id), function (error, response) {
             if (response.body.affected_rows >= 1) {
@@ -275,18 +285,19 @@ app.post('/topic/complete', function (req, res) {
     res.status("403").send("Not allowed!");
   }
 });
+
 //For completing the course
 app.get('/course/complete', function (req, res) {
-  var userInfo = getBasicAuthInfo(req);
+  let userInfo = getBasicAuthInfo(req);
   if (userInfo.role === "user" || userInfo.role === "admin") {
-    var course_id = parseInt(req.query.course_id);
+    let course_id = parseInt(req.query.course_id);
     //first, fetch course status
     makePOSTRequest(dataQuery.fetchCourseStatus(userInfo.id, course_id), function (error, response) {
       if (response.statusCode == 200) {
-        var module_length = response.body.length;
+        let module_length = response.body.length;
         if (module_length > 0) {
-          var status_check = 0;
-          for (var i = 0; i < module_length; i++) {
+          let status_check = 0;
+          for (let i = 0; i < module_length; i++) {
             if (response.body[i].module_topics.length === response.body[i].user_topic_status.length) {
               status_check++;
             }
@@ -320,13 +331,15 @@ app.get('/course/complete', function (req, res) {
     res.status("403").send("Not allowed!");
   }
 });
+
 app.get('/getinfo', function (req, res) {
   res.json(getBasicAuthInfo(req));
 });
 
-//loading static files
+// loading static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// listens for connections on the port 8080
 app.listen(8080, function () {
   console.log('egyan app listening on port 8080!');
 });

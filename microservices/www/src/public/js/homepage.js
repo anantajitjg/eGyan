@@ -54,7 +54,7 @@ $(function () {
     };
     $.ajax({
         method: "POST",
-        url: data_url + "/v1/query",
+        url: data_query_url,
         data: JSON.stringify(fetch_course_query),
         contentType: "application/json"
     }).done(function (data) {

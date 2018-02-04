@@ -13,7 +13,7 @@ function displayUserInfo(user_id) {
     };
     $.ajax({
         method: "POST",
-        url: data_url + "/v1/query",
+        url: data_query_url,
         data: JSON.stringify(fetch_name_query),
         contentType: "application/json"
     }).done(function (data) {
@@ -102,7 +102,7 @@ function displayCourses(user_id) {
     };
     $.ajax({
         method: "POST",
-        url: data_url + "/v1/query",
+        url: data_query_url,
         data: JSON.stringify(fetch_courses_query),
         contentType: "application/json"
     }).done(function (data) {
@@ -136,7 +136,7 @@ $(function () {
     //get user info
     $.ajax({
         method: "GET",
-        url: auth_url + "/user/info",
+        url: auth_query_url + "/user/info",
         contentType: "application/json"
     }).done(function (res) {
         //console.log(res);

@@ -1,10 +1,10 @@
-var DataQuery = function () {
-    var me = this;
+let DataQuery = function () {
+    let me = this;
     /* ----------- course related queries -------------*/
 
     //To select course details
     me.fetchCourseDetails = function (user_id, course_id) {
-        var query = {
+        let query = {
             "type": "select",
             "args": {
                 "table": "course_details",
@@ -33,7 +33,7 @@ var DataQuery = function () {
     };
     //To insert course status
     me.insertCourseStatus = function (user_id, course_id) {
-        var query = {
+        let query = {
             "type": "insert",
             "args": {
                 "table": "course_status",
@@ -47,7 +47,7 @@ var DataQuery = function () {
     };
     //To fetch course status
     me.fetchCourseStatus = function (user_id, course_id) {
-        var query = {
+        let query = {
             "type": "select",
             "args": {
                 "table": "module_details",
@@ -70,7 +70,7 @@ var DataQuery = function () {
     };
     //To update course status
     me.updateCourseStatus = function (user_id, course_id) {
-        var query = {
+        let query = {
             "type": "update",
             "args": {
                 "table": "course_status",
@@ -95,7 +95,7 @@ var DataQuery = function () {
 
     //To insert user Full Name
     me.insertFullName = function (user_id, name) {
-        var query = {
+        let query = {
             "type": "insert",
             "args": {
                 "table": "user_other_details",
@@ -109,7 +109,7 @@ var DataQuery = function () {
     };
     //To select user points
     me.fetchUserPoints = function (user_id) {
-        var query = {
+        let query = {
             "type": "select",
             "args": {
                 "table": "user_other_details",
@@ -123,7 +123,7 @@ var DataQuery = function () {
     };
     //To update user points
     me.updateUserPoints = function (user_id, topic_points) {
-        var query = {
+        let query = {
             "type": "update",
             "args": {
                 "table": "user_other_details",
@@ -139,7 +139,7 @@ var DataQuery = function () {
     };
     //To select badge details
     me.fetchBadgeDetails = function (user_id, points) {
-        var query = {
+        let query = {
             "type": "select",
             "args": {
                 "table": "badge_details",
@@ -165,7 +165,7 @@ var DataQuery = function () {
     };
     //To insert user badges
     me.insertUserBadge = function (badgeArray) {
-        var query = {
+        let query = {
             "type": "insert",
             "args": {
                 "table": "badge_status",
@@ -179,7 +179,7 @@ var DataQuery = function () {
 
     //To fetch topic points
     me.fetchTopicPoints = function (topic_id) {
-        var query = {
+        let query = {
             "type": "select",
             "args": {
                 "table": "topic_details",
@@ -193,7 +193,7 @@ var DataQuery = function () {
     };
     //To insert topic status
     me.insertTopicStatus = function (user_id, topic_id, topic_points, module_id) {
-        var query = {
+        let query = {
             "type": "insert",
             "args": {
                 "table": "topic_status",

@@ -54,7 +54,7 @@ $(function () {
             };
             $.ajax({
                 method: "POST",
-                url: auth_url + "/login",
+                url: auth_query_url + "/login",
                 xhrFields: {
                     withCredentials: true
                 },
