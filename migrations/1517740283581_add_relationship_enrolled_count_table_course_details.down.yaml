@@ -1,0 +1,4 @@
+- args:
+    relationship: enrolled_count
+    table: course_details
+  type: drop_relationship

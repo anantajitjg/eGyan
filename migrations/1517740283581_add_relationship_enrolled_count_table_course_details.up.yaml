@@ -1,0 +1,9 @@
+- args:
+    name: enrolled_count
+    table: course_details
+    using:
+      manual_configuration:
+        column_mapping:
+          course_id: course_id
+        remote_table: enrolled_count
+  type: create_object_relationship

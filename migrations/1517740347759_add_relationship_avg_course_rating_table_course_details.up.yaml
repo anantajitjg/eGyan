@@ -1,0 +1,9 @@
+- args:
+    name: avg_course_rating
+    table: course_details
+    using:
+      manual_configuration:
+        column_mapping:
+          course_id: course_id
+        remote_table: avg_course_rating
+  type: create_object_relationship

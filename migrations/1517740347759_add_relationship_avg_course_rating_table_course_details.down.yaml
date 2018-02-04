@@ -1,0 +1,4 @@
+- args:
+    relationship: avg_course_rating
+    table: course_details
+  type: drop_relationship
