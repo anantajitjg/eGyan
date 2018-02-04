@@ -61,7 +61,7 @@ $(function () {
         //console.log(data);
         displayAccordion(data, $('#course_accordion'), "normal");
     }).fail(function (xhr) {
-        //console.log(xhr);
+        console.log(xhr);
         displayAccordionError($('#course_accordion'));
     }).always(function () {
         $(".course_loader").hide();
