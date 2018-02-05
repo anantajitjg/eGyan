@@ -3,6 +3,9 @@ eGyan is a web application built with Node.js (Express) and Hasura (https://hasu
 
 [![eGyan Video](https://user-images.githubusercontent.com/22009263/33184648-a2dc2026-d0a3-11e7-880e-ae602fcef1b2.png)](https://youtu.be/5VeZMmC7Idc)
 
+## Overview
+This provides you with a great starting point for building a full-fledged eLearning application. In eGyan a user/student needs to register with a username and password for accessing the course content and to save his course progress. Courses are categorized based on activity- Active courses, completed courses, courses yet to be enrolled/Available Courses. Each courses are divided into separate modules. Each module contains different topics. Each topics are points based. So, students can accumulate points to collect different badges. This will make learning interesting! In order to collect points they have to mark each topic as completed!
+
 ## Setup
 
 * [Setup the Hasura CLI](#setup-the-hasura-cli)
@@ -12,12 +15,12 @@ eGyan is a web application built with Node.js (Express) and Hasura (https://hasu
 * [Accessing Console](#accessing-console)
 
 
-## Setup the Hasura CLI
+### Setup the Hasura CLI
 
 The hasura CLI is a command line utility to help you get your backend setup quickly. It helps you create projects, manage clusters and manage microservices and explore APIs running on the cluster.
 The instructions for setup are available from [here](https://docs.hasura.io/0.15/manual/tutorial/1-setup-hasura-cli.html).
 
-### Login
+#### Login
 
 Next, login or register by running the following command:
 
@@ -27,7 +30,7 @@ $ hasura login
 
 This command will open up the browser and allow you to register with a new account (or login to your existing account).
 
-## Required Project Structure
+### Required Project Structure
 
 The project (a.k.a. project directory) has a particular directory structure and it has to be maintained strictly, else `hasura` cli would not work as expected. A *representative project* is shown below:
 
@@ -57,20 +60,20 @@ The project (a.k.a. project directory) has a particular directory structure and 
         └── Dockerfile
 ```
 
-### `hasura.yaml`
+#### `hasura.yaml`
 
 This file contains some metadata about the project, namely a name, description and some keywords. Also contains `platformVersion` which says which Hasura platform version is compatible with this project.
 
-### `clusters.yaml`
+#### `clusters.yaml`
 
 Info about the clusters added to this project can be found in this file. Each cluster is defined by it's name allotted by Hasura. While adding the cluster to the project you are prompted to give an alias, which is just hasura by default. The `kubeContext` mentions the name of kubernetes context used to access the cluster, which is also managed by hasura. The `config` key denotes the location of cluster's metadata on the cluster itself. This information is parsed and cluster's metadata is appended while conf is rendered. `data` key is for holding custom variables that you can define.
 
-## Hasura cluster
+### Hasura cluster
 
 We need a Hasura cluster where we can deploy our project.
-The instructions for creating a Hasura cluster are available from [here](https://docs.hasura.io/0.15/manual/tutorial/3-hasura-cluster.html).
+***The instructions for creating a Hasura cluster*** are available from [here](https://docs.hasura.io/0.15/manual/tutorial/3-hasura-cluster.html).
 
-### Get cluster information and the microservices running
+#### Get cluster information and the microservices running
 
 Inside your project directory, run:
 
@@ -78,16 +81,16 @@ Inside your project directory, run:
 $ hasura cluster status
 ```
 
-## Deploy the Project
+### Deploy the Project
 
 ```
 $ git add .
-$ git commit -m "eGyan initial commit"
+$ git commit -m "some message"
 $ git push hasura master
 ```
 Once this project is deployed on to a hasura cluster, you will have eGyan app running at **`https://www.<cluster-name>.hasura-app.io`**
 
-## Accessing Console
+### Accessing Console
 
 Now that you have deployed the project on your cluster, you would want to manage the schema and explore APIs.
 
@@ -100,4 +103,4 @@ $ hasura api-console
 This will open up Console UI on the browser. You can access it at [http://localhost:9695](http://localhost:9695)
 
 ## License
-eGyan is open-sourced software licensed under the MIT license. See the LICENSE for more.
+eGyan is open-sourced software licensed under the MIT license. See the [LICENSE](https://raw.githubusercontent.com/anantajitjg/eGyan/master/LICENSE) for more.
