@@ -161,14 +161,13 @@ app.post("/signup", function (req, res) {
     res.status(400).send("Invalid input values!");
   } else {
     //Making HTTP request
+    if(req.get('X-Hasura-Base-Domain')) {
+      headers['X-Hasura-Base-Domain'] = req.get('X-Hasura-Base-Domain');
+    }
     request({
       url: request_url,
       method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Hasura-Role': 'anonymous',
-        'X-Hasura-User-Id': 0
-      },
+      headers: headers,
       json: true,
       body: {
         "provider": "username",
