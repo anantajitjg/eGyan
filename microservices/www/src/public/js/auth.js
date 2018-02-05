@@ -60,17 +60,28 @@ $(function () {
                 contentType: "application/json"
             }).done(function (res) {
                 //console.log(res);
-                window.location = "/student";
+                var user_id = res.hasura_id;
+                $.getJSON(rootURL + "/setinfo", { user_id: user_id})
+                    .done(function(json) {
+                        //console.log(json);
+                        window.location = "/student";
+                    }).fail(function(xhr) {
+                        //console.log(xhr);
+                        onLoginFail("Failed to login!");
+                    });
             }).fail(function (xhr) {
                 //console.log(xhr);
-                $("#login_btn").removeClass("disabled");
-                $login_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>Username or Password is wrong!</div><p>Please try again!</p></div>");
-                $(".login_modal").modal("refresh");
+                onLoginFail("Username or Password is wrong!");
             }).always(function () {
                 $("#login_loader").css("display", "none");
             });
         }
     });
+    function onLoginFail(msg) {
+        $("#login_btn").removeClass("disabled");
+        $login_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>" + msg + "</div><p>Please try again!</p></div>");
+        $(".login_modal").modal("refresh");
+    }
     // signup form
     //=================================================
     fields_rules.name = {

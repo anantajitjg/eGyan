@@ -2,6 +2,7 @@ let hbs = require('express-handlebars'),
     path = require('path'),
     express = require('express'),
     request = require('request'),
+    session = require('express-session');
     bodyParser = require('body-parser');
 
 // custom modules
@@ -11,6 +12,13 @@ let app = express();
 let dataQuery = new DataQuery();
 app.use(bodyParser.json());
 app.set('env', 'production'); //development or production
+// session handling: dev only
+app.use(session({
+	secret: 'eGyan Developement Mode',
+	cookie: {maxAge: 1814400},
+	resave: false,
+	saveUninitialized: true
+}));
 
 // view
 //===============================================================
@@ -47,6 +55,11 @@ let data_query_url = data_url + "/v1/query";
 //===============================================================
 function getBasicAuthInfo(req) {
   let info = { id: 0, role: 'anonymous'};
+  if(app.get('env') === "development") {
+    if(req.session && req.session.userAuth && req.session.userAuth.id && req.session.userAuth.role){
+      info = req.session.userAuth; 
+    }
+  }
   //let dev_info = { id: 7, role: "user" }; // for development only
   //info = app.get('env') === 'development' ? dev_info : info;
   if (req.get('X-Hasura-Role')) {
@@ -75,7 +88,7 @@ function makePOSTRequest(data, callback) {
 //===============================================================
 app.get('/', function (req, res) {
   let userInfo = getBasicAuthInfo(req);
-  if (app.get('env') === "production" && (userInfo.role === "user" || userInfo.role === "admin")) {
+  if (userInfo.role === "user" || userInfo.role === "admin") {
     res.redirect('/student');
   } else {
     res.render('index', {
@@ -142,8 +155,13 @@ app.get('/course/id/:id', function (req, res) {
 });
 
 app.get('/logout', function (req, res) {
+  if(app.get('env') === "development") {
+    if(req.session && req.session.userAuth && req.session.userAuth.id && req.session.userAuth.role){
+      delete req.session.userAuth;
+    }
+  }
   let userInfo = getBasicAuthInfo(req);
-  if (app.get('env') === "production" && (userInfo.role === "user" || userInfo.role === "admin")) {
+  if (userInfo.role === "user" || userInfo.role === "admin") {
     res.redirect('/student');
   } else {
     res.render('logout', {
@@ -326,6 +344,33 @@ app.get('/course/complete', function (req, res) {
     });
   } else {
     res.status("403").send("Not allowed!");
+  }
+});
+
+app.get('/setinfo', function (req, res) {
+  const msg = {"message": "done"};
+  if(app.get('env') === "development") {
+    let user_id = req.query.user_id;
+    request({
+      url: auth_query_url + '/admin/user/' + user_id,
+      method: "GET",
+      headers: headers,
+      json: true
+    }, function (error, response) {
+      if (error) {
+        return res.status(500).send(error.toString());
+      }
+      if (response.statusCode == 200) {
+        let hasura_id = response.body.hasura_id;
+        let role = response.body.hasura_roles[0];
+        req.session.userAuth = { id: user_id, role: role };
+        res.status(200).json(msg);
+      } else {
+          res.status(response.statusCode).json(response.body);
+      }
+    });
+  } else {
+    res.status(200).json(msg);
   }
 });
 
