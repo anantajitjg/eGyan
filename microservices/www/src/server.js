@@ -165,7 +165,8 @@ app.post("/signup", function (req, res) {
       url: request_url,
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Hasura-User-Id': 0
       },
       json: true,
       body: {
