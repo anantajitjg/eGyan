@@ -173,7 +173,8 @@ app.post("/signup", function (req, res) {
         "provider": "username",
         "data": {
           "username": email,
-          "password": password
+          "password": password,
+          "email": email
         }
       }
     }, function (error, response) {
