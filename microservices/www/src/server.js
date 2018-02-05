@@ -153,11 +153,12 @@ app.get('/logout', function (req, res) {
 });
 
 app.post("/signup", function (req, res) {
-  let request_url = auth_query_url + '/signup';
+  const request_url = auth_query_url + '/signup';
+  const un_pattern=/^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$/;
   let name = req.body.name;
-  let email = req.body.email;
+  let username = req.body.username;
   let password = req.body.password;
-  if (name.trim() === "" || email.trim() == "" || password.trim() === "") {
+  if (name.trim() === "" || username.trim() == "" || username.length < 5 || !un_pattern.test(username) || password.trim() === "") {
     res.status(400).send("Invalid input values!");
   } else {
     //Making HTTP request
@@ -170,10 +171,10 @@ app.post("/signup", function (req, res) {
       headers: headers,
       json: true,
       body: {
-        "provider": "email",
+        "provider": "username",
         "data": {
-          "password": password,
-          "email": email
+          "username": username,
+          "password": password
         }
       }
     }, function (error, response) {
@@ -193,13 +194,7 @@ app.post("/signup", function (req, res) {
           }
         });
       } else {
-        if (response.statusCode == 409) {
-          res.status(409).send(JSON.stringify({
-            message: "Email already exists!"
-          }));
-        } else {
           res.status(response.statusCode).send(JSON.stringify(response.body));
-        }
       }
     });
   }

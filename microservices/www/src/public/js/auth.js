@@ -7,31 +7,38 @@ $(function () {
     $signup_form.submit(function (e) {
         e.preventDefault();
     });
-    $login_form.form({
-        fields: {
-            email: {
-                identifier: 'username',
-                rules: [{
-                        type: 'empty',
-                        prompt: 'Please enter your e-mail'
-                    },
-                    {
-                        type: 'email',
-                        prompt: 'Please enter a valid e-mail'
-                    }
-                ]
-            },
-            password: {
-                identifier: 'password',
-                rules: [{
+    var fields_rules = {
+        username: {
+            identifier: 'username',
+            rules: [{
                     type: 'empty',
-                    prompt: 'Please enter your password'
-                }, {
-                    type: 'minLength[8]',
-                    prompt: 'Your password must be at least {ruleValue} characters'
-                }]
-            }
+                    prompt: 'Please enter a username'
+                },
+                {
+                    type: 'minLength[5]',
+                    prompt: 'Username must be at least {ruleValue} characters'
+                },
+                {
+                    type: 'regExp[/^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$/]',
+                    prompt: 'Only alphanumeric characters or single hyphens (not at the beginning or end) are allowed as username!'
+                }
+            ]
         },
+        password: {
+            identifier: 'password',
+            rules: [{
+                type: 'empty',
+                prompt: 'Please enter your password'
+            }, {
+                type: 'minLength[8]',
+                prompt: 'Your password must be at least {ruleValue} characters'
+            }]
+        }
+    };
+    // login form
+    //=================================================
+    $login_form.form({
+        fields: fields_rules,
         onFailure: function () {
             $(".login_modal").modal("refresh");
         },
@@ -66,45 +73,24 @@ $(function () {
             }).fail(function (xhr) {
                 //console.log(xhr);
                 $("#login_btn").removeClass("disabled");
-                $login_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>Email or Password is wrong!</div><p>Please try again!</p></div>");
+                $login_form.append("<div class='ui error message user_error' style='display:block;'><div class='header'>Username or Password is wrong!</div><p>Please try again!</p></div>");
                 $(".login_modal").modal("refresh");
             }).always(function () {
                 $("#login_loader").css("display", "none");
             });
         }
     });
+    // signup form
+    //=================================================
+    fields_rules.name = {
+        identifier: 'name',
+        rules: [{
+            type: 'empty',
+            prompt: 'Please enter your name'
+        }]
+    };
     $signup_form.form({
-        fields: {
-            name: {
-                identifier: 'name',
-                rules: [{
-                    type: 'empty',
-                    prompt: 'Please enter your name'
-                }]
-            },
-            email: {
-                identifier: 'email',
-                rules: [{
-                        type: 'empty',
-                        prompt: 'Please enter your e-mail'
-                    },
-                    {
-                        type: 'email',
-                        prompt: 'Please enter a valid e-mail'
-                    }
-                ]
-            },
-            password: {
-                identifier: 'password',
-                rules: [{
-                    type: 'empty',
-                    prompt: 'Please enter your password'
-                }, {
-                    type: 'minLength[8]',
-                    prompt: 'Your password must be at least {ruleValue} characters'
-                }]
-            }
-        },
+        fields: fields_rules,
         onFailure: function () {
             $(".signup_modal").modal("refresh");
         },
@@ -128,7 +114,7 @@ $(function () {
                 data: data,
                 contentType: "application/json"
             }).done(function (res) {
-                $signup_form.append("<div class='ui success message'><div class='header'>" + res + "</div><br />You can now <div class='ui tiny teal button login_trigger'>Log In</div> with your email!</div>");
+                $signup_form.append("<div class='ui success message'><div class='header'>" + res + "</div><br />You can now <div class='ui tiny teal button login_trigger'>Log In</div> with your username and password!</div>");
                 $(".signup_modal").modal("refresh");
                 $('.login_trigger').click(function () {
                     triggerModal(".login_modal");
