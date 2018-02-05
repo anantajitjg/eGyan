@@ -170,9 +170,8 @@ app.post("/signup", function (req, res) {
       headers: headers,
       json: true,
       body: {
-        "provider": "username",
+        "provider": "email",
         "data": {
-          "username": email,
           "password": password,
           "email": email
         }
