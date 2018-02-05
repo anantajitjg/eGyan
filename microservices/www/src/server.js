@@ -153,12 +153,11 @@ app.get('/logout', function (req, res) {
 });
 
 app.post("/signup", function (req, res) {
-  const request_url = auth_query_url + '/signup';
-  const un_pattern=/^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$/;
+  let request_url = auth_query_url + '/signup';
   let name = req.body.name;
   let username = req.body.username;
   let password = req.body.password;
-  if (name.trim() === "" || username.trim() == "" || username.length < 5 || !un_pattern.test(username) || password.trim() === "") {
+  if (name.trim() === "" || username.trim() == "" || password.trim() === "") {
     res.status(400).send("Invalid input values!");
   } else {
     //Making HTTP request

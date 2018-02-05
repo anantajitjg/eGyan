@@ -13,16 +13,7 @@ $(function () {
             rules: [{
                     type: 'empty',
                     prompt: 'Please enter a username'
-                },
-                {
-                    type: 'minLength[5]',
-                    prompt: 'Username must be at least {ruleValue} characters'
-                },
-                {
-                    type: 'regExp[/^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$/]',
-                    prompt: 'Only alphanumeric characters or single hyphens (not at the beginning or end) are allowed as username!'
-                }
-            ]
+                }]
         },
         password: {
             identifier: 'password',
