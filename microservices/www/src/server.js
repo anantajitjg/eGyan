@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.set('env', 'production'); //development or production
 // session handling: dev only
 app.use(session({
-	secret: 'eGyan Developement Mode',
+	secret: 'eGyan Development Mode',
 	cookie: {maxAge: 1814400},
 	resave: false,
 	saveUninitialized: true
@@ -60,8 +60,6 @@ function getBasicAuthInfo(req) {
       info = req.session.userAuth; 
     }
   }
-  //let dev_info = { id: 7, role: "user" }; // for development only
-  //info = app.get('env') === 'development' ? dev_info : info;
   if (req.get('X-Hasura-Role')) {
     if (req.get('X-Hasura-User-Id')) {
       info.id = parseInt(req.get('X-Hasura-User-Id'));
