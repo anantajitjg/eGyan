@@ -45,7 +45,7 @@ session:
   # to edit this in normal circumstances.
   cookieName: {{ cluster.name }}
   # if the cookie should be sent over https only. Stick to "true".
-  cookieSecure: "true"
+  cookieSecure: "false"
   # The default age of a user session in seconds. Default: 181440 (3 weeks)
   sessionAge: "1814400"
 

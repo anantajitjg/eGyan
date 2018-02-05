@@ -46,9 +46,9 @@ let data_query_url = data_url + "/v1/query";
 // custom functions
 //===============================================================
 function getBasicAuthInfo(req) {
-  let info = {};
-  let dev_info = { id: 7, role: "user" }; // for development only
-  info = app.get('env') === 'development' ? dev_info : info;
+  let info = { id: 0, role: 'anonymous'};
+  //let dev_info = { id: 7, role: "user" }; // for development only
+  //info = app.get('env') === 'development' ? dev_info : info;
   if (req.get('X-Hasura-Role')) {
     if (req.get('X-Hasura-User-Id')) {
       info.id = parseInt(req.get('X-Hasura-User-Id'));
@@ -153,7 +153,6 @@ app.get('/logout', function (req, res) {
 });
 
 app.post("/signup", function (req, res) {
-  let request_url = auth_query_url + '/signup';
   let name = req.body.name;
   let username = req.body.username;
   let password = req.body.password;
@@ -165,7 +164,7 @@ app.post("/signup", function (req, res) {
       headers['X-Hasura-Base-Domain'] = req.get('X-Hasura-Base-Domain');
     }
     request({
-      url: request_url,
+      url: auth_query_url + '/signup',
       method: "POST",
       headers: headers,
       json: true,
