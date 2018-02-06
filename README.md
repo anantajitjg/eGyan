@@ -1,6 +1,8 @@
 # eGyan
 eGyan is a web application built with Node.js (Express) and [Hasura](https://hasura.io/) Platform. It is a simple and effective eLearning app for everyone.
 
+> ***Now, available at [Hasura Hub](https://hasura.io/hub/project/anantajitjg/egyan)***
+
 ## Overview
 This provides you with a great starting point for building a full-fledged eLearning application. In eGyan a user/student needs to register with a username and password for accessing the course content and to save his course progress. Courses are categorized based on activity- Active courses, completed courses, courses yet to be enrolled/Available Courses. Each courses are divided into separate modules. Each module contains different topics. Each topics are points based. So, students can accumulate points to collect different badges. This will make learning interesting! In order to collect points they have to mark each topic as completed!
 
@@ -8,29 +10,34 @@ This provides you with a great starting point for building a full-fledged eLearn
 
 ## Setup
 
-* [Setup the Hasura CLI](#setup-the-hasura-cli)
-* [Required Project Structure](#required-project-structure)
+* [Initial Setup](#initial-setup)
+* [Project Structure](#project-structure)
 * [Hasura cluster](#hasura-cluster)
 * [Deploy the Project](#deploy-the-project)
 * [Accessing Console](#accessing-console)
 
-
-### Setup the Hasura CLI
+### Initial Setup
+#### Setup the Hasura CLI
 
 The hasura CLI is a command line utility to help you get your backend setup quickly. It helps you create projects, manage clusters and manage microservices and explore APIs running on the cluster.
 The instructions for setup are available from [here](https://docs.hasura.io/0.15/manual/tutorial/1-setup-hasura-cli.html).
 
-#### Login
+##### Login
 
 Next, login or register by running the following command:
 
 ```
 $ hasura login
 ```
-
 This command will open up the browser and allow you to register with a new account (or login to your existing account).
 
-### Required Project Structure
+#### Clone the project
+Now, clone this project by running this command
+```
+$ hasura clone anantajitjg/egyan
+```
+
+### Project Structure
 
 The project (a.k.a. project directory) has a particular directory structure and it has to be maintained strictly, else `hasura` cli would not work as expected. A *representative project* is shown below:
 
@@ -79,6 +86,11 @@ Inside your project directory, run:
 
 ```
 $ hasura cluster status
+```
+#### common.js
+Edit cluster name in common.js (`microservices > www > src > public > js`) with your current cluster name. For example, if the cluster name is `flashiness71` (existing one), then
+```javascript
+var cluster_name = "flashiness71";
 ```
 
 ### Deploy the Project
