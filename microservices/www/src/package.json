@@ -12,6 +12,6 @@
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
-    "request": "^2.81.0"
+    "request": "^2.86.0"
   }
 }
